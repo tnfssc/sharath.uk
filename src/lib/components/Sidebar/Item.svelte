@@ -5,7 +5,7 @@
   export let text: string;
   export let duration = 1000;
   export let height = 28;
-  export let width = 270;
+  export let width = 360;
   export let strokeWidth = 2;
   export let strokeColor = "white";
   export let fontSize = 24;
@@ -15,7 +15,7 @@
 
 <span in:fly={{ x: 200, delay }}>
   <span class="absolute">
-    <svg {width} {height} class="-mt-9">
+    <svg {width} {height} class="-ml-4 -mt-11">
       <g out:fade>
         <text
           in:stroke={{ duration, strokeLength, delay }}
@@ -31,7 +31,7 @@
     </svg>
   </span>
   <span class="absolute">
-    <svg in:fade={{ delay: delay + 600 }} {width} {height} class="-mt-9">
+    <svg in:fade={{ delay: delay + 600 }} {width} {height} class="-ml-4 -mt-11">
       <text fill="white" y={fontSize} stroke="none" font-size={fontSize}>
         {text}
       </text>

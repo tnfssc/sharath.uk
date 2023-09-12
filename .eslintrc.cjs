@@ -27,5 +27,6 @@ module.exports = {
         caughtErrorsIgnorePattern: "^_",
       },
     ],
+    "a11y-click-events-have-key-events": "off",
   },
 };

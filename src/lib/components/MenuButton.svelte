@@ -8,7 +8,7 @@
   export let isSidebarOpen: boolean;
 </script>
 
-<span class="btn-xl btn-info btn-circle btn h-4 rotate-0">
+<span class="btn btn-circle btn-xl h-4 rotate-0 border-none bg-white text-black shadow-lg hover:bg-gray-300">
   {#if isSidebarOpen}
     <span class="absolute" transition:rotate180={{ direction: "cw" }}><Icon icon={closeIcon} size={8} /></span>
   {:else}
