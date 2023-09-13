@@ -9,7 +9,7 @@
   };
 </script>
 
-<div class="absolute bottom-6 right-4 z-20">
+<div class="fixed bottom-6 right-4 z-20">
   <label for="main-navbar" class="drawer-button">
     <MenuButton {isSidebarOpen} />
   </label>

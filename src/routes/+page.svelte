@@ -10,7 +10,7 @@
   }
 </script>
 
-<main>
+<main class="snap-mandatory snap-y overflow-y-auto h-screen w-screen scroll-smooth text-white">
   <FsSection id={Section.Hi} className="bg-gradient-to-bl from-teal-900 to-teal-700 snap-start">
     <div class="text-8xl">Hi</div>
     <ScrollMore slot="bottom" href="#{Section.WhoIAm}" text="scroll down" />
@@ -39,13 +39,3 @@
     </span>
   </FsSection>
 </main>
-
-<style>
-  main {
-    scroll-snap-type: y mandatory;
-    overflow-y: auto;
-    height: 100vh;
-    width: 100vw;
-    scroll-behavior: smooth;
-  }
-</style>
