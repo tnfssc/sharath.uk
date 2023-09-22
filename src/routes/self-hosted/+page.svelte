@@ -6,7 +6,7 @@
 
   import ghostIcon from "@iconify/icons-logos/ghost";
   import jitsiIcon from "@iconify/icons-simple-icons/jitsi";
-  import appsmithIcon from "@iconify/icons-simple-icons/appsmith";
+  import notionIcon from "@iconify/icons-simple-icons/notion";
   import fileIcon from "@iconify/icons-mdi/file";
   import pastebinIcon from "@iconify/icons-simple-icons/pastebin";
   import portainerIcon from "@iconify/icons-simple-icons/portainer";
@@ -21,43 +21,42 @@
   const selfHosted = shuffleArray([
     {
       content: "Ghost",
-      href: "//blog.sharath.co.in",
+      href: "//ghost.sharath.uk",
       background: "bg-gradient-to-tl from-green-900 to-green-400",
       description: "Private blog",
       icon: ghostIcon,
     },
     {
       content: "Jitsi",
-      href: "//meet.sharath.co.in",
+      href: "//meet.sharath.uk",
       background: "bg-gradient-to-tl from-purple-900 to-orange-500",
       description: "Alternative to Google Meet",
       icon: jitsiIcon,
     },
     {
-      content: "Appsmith",
-      href: "//appsmith.sharath.co.in",
-      background: "bg-gradient-to-tl from-orange-900 to-orange-700",
-      description: "Power Apps alternative",
-      icon: appsmithIcon,
-      private: true,
+      content: "Outline",
+      href: "//outline.sharath.uk",
+      background: "bg-gradient-to-tl from-black to-black",
+      description: "Notion alternative",
+      icon: notionIcon,
     },
     {
       content: "RxResume",
-      href: "//resume.sharath.co.in",
+      href: "//rxresume.sharath.uk",
       background: "bg-gradient-to-tl from-yellow-900 to-orange-400",
       description: "Resume builder",
       icon: fileIcon,
     },
     {
       content: "dpaste",
-      href: "//bin.sharath.co.in/",
+      href: "//dpaste.sharath.uk",
       background: "bg-gradient-to-tl from-stone-900 to-stone-900",
       description: "Private paste bin service",
       icon: pastebinIcon,
     },
     {
       content: "Portainer",
-      href: "//portainer.sharath.co.in",
+      href: "//portainer.sharath.uk",
       background: "bg-gradient-to-tl from-cyan-900 to-cyan-500",
       description: "Container management",
       icon: portainerIcon,
@@ -65,7 +64,7 @@
     },
     {
       content: "MinIO",
-      href: "//minio.sharath.co.in",
+      href: "//minio.sharath.uk",
       background: "bg-gradient-to-tl from-red-900 to-red-500",
       description: "Minio",
       icon: minioIcon,
@@ -73,14 +72,14 @@
     },
     {
       content: "RustPad",
-      href: "//pad.sharath.co.in/",
+      href: "//rustpad.sharath.uk",
       background: "bg-gradient-to-tl from-yellow-500 to-stone-500",
       description: "Online collaborative notepad",
       icon: paddingIcon,
     },
     {
-      content: "BitWarden",
-      href: "//vaultwarden.sharath.co.in",
+      content: "VaultWarden",
+      href: "//vaultwarden.sharath.uk",
       background: "bg-gradient-to-tl from-blue-900 to-blue-700",
       description: "Open source password manager",
       icon: bitwardenIcon,
@@ -88,7 +87,7 @@
     },
     {
       content: "Netdata",
-      href: "//netdata.sharath.co.in",
+      href: "//netdata.sharath.uk",
       background: "bg-gradient-to-tl from-green-900 to-green-500",
       description: "My node stats",
       icon: leafletIcon,
@@ -96,7 +95,7 @@
     },
     {
       content: "VSCode",
-      href: "//code.sharath.co.in",
+      href: "//code.sharath.uk",
       background: "bg-gradient-to-tl from-blue-900 to-blue-500",
       description: "VSCode in browser",
       icon: visualstudiocodeIcon,
@@ -104,7 +103,7 @@
     },
     {
       content: "Tabby",
-      href: "//tabby.sharath.co.in",
+      href: "//tabby.sharath.uk",
       background: "bg-gradient-to-tl from-stone-700 to-stone-500",
       description: "SSH in browser",
       icon: consoleIcon,
@@ -142,7 +141,7 @@
     <div class="tooltip col-span-full" data-tip="Status page">
       <a
         target="_blank"
-        href="//status.sharath.co.in"
+        href="//uptimekuma.sharath.uk"
         class="w-full hover:scale-105"
         in:scale={{ delay: selfHosted.length * 50 }}
       >
