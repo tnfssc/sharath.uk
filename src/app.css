@@ -1,13 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: "Cheri";
   src: url("./lib/fonts/CHERI___.TTF") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 body {
   margin: 0;

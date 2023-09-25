@@ -10,7 +10,6 @@ const schema = z.object({
 
 export type Response = {
   message: string;
-
   errors?: z.ZodError<z.infer<typeof schema>>["formErrors"];
 };
 
