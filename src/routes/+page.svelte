@@ -16,7 +16,7 @@
     <FsSection id={Section.Hi} className="bg-gradient-to-bl from-teal-900 to-teal-700 snap-start">
       <div class="text-8xl flex flex-row items-center gap-6">
         <img src="/icon.png" width="100" height="100" />
-        <span>sharath.uk</span>
+        <span class="hidden sm:block">sharath.uk</span>
       </div>
       <ScrollMore slot="bottom" href="#{Section.WhoIAm}" text="scroll down" />
     </FsSection>
