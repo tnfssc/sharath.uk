@@ -6,10 +6,11 @@ import million from 'million/compiler';
 import path from 'node:path';
 import UnoCSS from 'unocss/vite';
 import { defineConfig } from 'vite';
+import { imagetools } from 'vite-imagetools';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [UnoCSS(), million.vite({ auto: true, telemetry: false }), react(), TanStackRouterVite()],
+  plugins: [UnoCSS(), million.vite({ auto: true, telemetry: false }), react(), TanStackRouterVite(), imagetools()],
   resolve: {
     alias: {
       // @ts-expect-error
