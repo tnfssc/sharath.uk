@@ -1,6 +1,12 @@
+import { createLazyFileRoute } from '@tanstack/react-router';
+
 import { Spotlight } from '@/components/ui/spotlight';
 
-export default function App() {
+export const Route = createLazyFileRoute('/')({
+  component: Index,
+});
+
+function Index() {
   return (
     <div className="bg-grid-white/[0.02] relative h-[40rem] w-full flex overflow-hidden rounded-md bg-black/[0.96] antialiased md:items-center md:justify-center">
       <Spotlight className="left-0 -top-40 md:left-60 md:-top-20" fill="white" />

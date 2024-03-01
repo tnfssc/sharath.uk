@@ -29,4 +29,5 @@ export default defineConfig({
       include: [/\.(vue|svelte|[jt]s|[jt]sx|mdx?|astro|elm|php|phtml|html)($|\?)/],
     },
   },
+  rules: [['animate-spotlight', { animation: 'spotlight 2s ease .75s 1 forwards' }]],
 });

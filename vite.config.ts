@@ -1,4 +1,5 @@
 /// <reference types="vitest" />
+import { TanStackRouterVite } from '@tanstack/router-vite-plugin';
 import react from '@vitejs/plugin-react-swc';
 import million from 'million/compiler';
 // @ts-expect-error
@@ -8,7 +9,7 @@ import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [UnoCSS(), million.vite({ auto: true, telemetry: false }), react()],
+  plugins: [UnoCSS(), million.vite({ auto: true, telemetry: false }), react(), TanStackRouterVite()],
   resolve: {
     alias: {
       // @ts-expect-error
