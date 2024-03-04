@@ -32,5 +32,10 @@ export default defineConfig({
   rules: [
     ['animate-spotlight', { animation: 'spotlight 2s ease .75s 1 forwards' }],
     ['animate-meteor-effect', { animation: 'meteor 5s linear infinite' }],
+    ['animate-gradient-first', { animation: 'moveVertical 30s ease infinite' }],
+    ['animate-gradient-second', { animation: 'moveInCircle 20s reverse infinite' }],
+    ['animate-gradient-third', { animation: 'moveInCircle 40s linear infinite' }],
+    ['animate-gradient-fourth', { animation: 'moveHorizontal 40s ease infinite' }],
+    ['animate-gradient-fifth', { animation: 'moveInCircle 20s ease infinite' }],
   ],
 });

@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
 
-export function PageWrapper({ children }: React.PropsWithChildren) {
+import { cn } from '@/lib/utils';
+
+export function PageWrapper({ children, className }: React.PropsWithChildren<{ className?: string }>) {
   return (
     <motion.div
-      initial={{ filter: 'blur(10px)' }}
+      initial={{ filter: 'blur(1000px)' }}
       animate={{ filter: 'blur(0px)' }}
-      className="relative z-10 p-4 container"
+      className={cn('relative max-h-screen max-w-screen overflow-auto container', className)}
     >
       {children}
     </motion.div>

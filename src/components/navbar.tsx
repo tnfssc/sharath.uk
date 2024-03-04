@@ -5,6 +5,7 @@ import { ModeToggle } from '@/components/mode-toggle';
 import { Button } from '@/components/ui/button';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from '@/components/ui/navigation-menu';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { cn } from '@/lib/utils';
 
 const NavMenuItem = ({
   children,
@@ -15,7 +16,7 @@ const NavMenuItem = ({
     <NavigationMenuItem>
       <Tooltip>
         <TooltipTrigger>
-          <Button asChild variant="ghost" className="transition-transform hover:scale-120 hover:bg-transparent">
+          <Button asChild variant="ghost" className={cn('transition-transform hover:scale-120 hover:bg-transparent', {  })}>
             <Link to={linkTo}>{children}</Link>
           </Button>
         </TooltipTrigger>
