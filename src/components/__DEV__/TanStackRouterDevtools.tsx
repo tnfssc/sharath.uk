@@ -9,8 +9,6 @@ const DevTools =
         })),
       );
 
-console.log(import.meta.env.DEV);
-
 export const TanStackRouterDevtools = () => (
   <Suspense fallback={null}>
     <DevTools />
