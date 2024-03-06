@@ -1,3 +1,4 @@
+import { Link, type LinkProps } from '@tanstack/react-router';
 import React, { useEffect, useRef, useState } from 'react';
 
 import { MouseEnterContext, useMouseEnter } from '@/components/ui/3d-card/context';
@@ -59,17 +60,17 @@ export const CardContainer = ({ children, className, containerClassName }: CardC
 export interface CardBodyProps {
   children: React.ReactNode;
   className?: string;
-  onClick?: () => void;
+  to: LinkProps['to'];
 }
 
-export const CardBody = ({ children, className, onClick }: CardBodyProps) => {
+export const CardBody = ({ children, className, to }: CardBodyProps) => {
   return (
-    <button
-      className={cn('h-96 w-96 [transform-style:preserve-3d]  [&>*]:[transform-style:preserve-3d]', className)}
-      onClick={onClick}
+    <Link
+      className={cn('h-96 w-96 [transform-style:preserve-3d] [&>*]:[transform-style:preserve-3d]', className)}
+      to={to}
     >
       {children}
-    </button>
+    </Link>
   );
 };
 

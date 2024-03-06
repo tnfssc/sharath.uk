@@ -34,7 +34,7 @@ function About() {
                     <img src={cs2Logo} alt="Counter-Strike 2" />
                   </div>
                 }
-                href="#underconstruction"
+                to="/about-gamer"
               />
               <SkillCard
                 title={
@@ -50,7 +50,7 @@ function About() {
                     </div>
                   </div>
                 }
-                href="#underconstruction"
+                to="/about-gamer"
               />
               <SkillCard
                 title={
@@ -66,7 +66,7 @@ function About() {
                     </div>
                   </div>
                 }
-                href="#underconstruction"
+                to="/about-gamer"
               />
             </div>
           </div>

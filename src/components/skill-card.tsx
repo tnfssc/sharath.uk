@@ -1,3 +1,5 @@
+import type { LinkProps } from '@tanstack/react-router';
+
 import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card';
 
 export interface SkillCardProps {
@@ -5,15 +7,15 @@ export interface SkillCardProps {
   image?: React.ReactNode;
   description: React.ReactNode;
   children?: React.ReactNode;
-  href: string;
+  to: LinkProps['to'];
 }
 
-export default function SkillCard({ children, description, image, title, href }: SkillCardProps) {
+export default function SkillCard({ children, description, image, title, to }: SkillCardProps) {
   return (
     <CardContainer>
       <CardBody
         className="relative h-auto max-w-xs w-auto border border-foreground/[0.2] rounded-xl bg-background bg-opacity-50 p-6 text-left"
-        onClick={() => window.open(href, '_blank', 'noopener noreferrer')}
+        to={to}
       >
         <CardItem translateZ="50" className="text-xl text-foreground/[0.9] font-bold">
           {title}

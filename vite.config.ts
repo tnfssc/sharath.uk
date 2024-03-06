@@ -10,7 +10,7 @@ import { imagetools } from 'vite-imagetools';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [UnoCSS(), million.vite({ auto: true, telemetry: false }), react(), TanStackRouterVite(), imagetools()],
+  plugins: [imagetools(), UnoCSS(), million.vite({ auto: true, telemetry: false }), react(), TanStackRouterVite()],
   resolve: {
     alias: {
       // @ts-expect-error
