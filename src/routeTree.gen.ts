@@ -16,11 +16,17 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
+const PrevSitesLazyImport = createFileRoute('/prev-sites')()
 const AboutGamerLazyImport = createFileRoute('/about-gamer')()
 const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
+
+const PrevSitesLazyRoute = PrevSitesLazyImport.update({
+  path: '/prev-sites',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/prev-sites.lazy').then((d) => d.Route))
 
 const AboutGamerLazyRoute = AboutGamerLazyImport.update({
   path: '/about-gamer',
@@ -53,6 +59,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutGamerLazyImport
       parentRoute: typeof rootRoute
     }
+    '/prev-sites': {
+      preLoaderRoute: typeof PrevSitesLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -62,6 +72,7 @@ export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
   AboutLazyRoute,
   AboutGamerLazyRoute,
+  PrevSitesLazyRoute,
 ])
 
 /* prettier-ignore-end */
