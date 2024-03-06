@@ -24,7 +24,6 @@ body {
   transition: background-color 300ms;
 }
 
-
 @keyframes spotlight {
   0% {
     opacity: 0;
@@ -83,5 +82,14 @@ body {
   }
   100% {
     transform: translateY(-50%);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }

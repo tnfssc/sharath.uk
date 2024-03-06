@@ -16,7 +16,11 @@ const NavMenuItem = ({
     <NavigationMenuItem>
       <Tooltip>
         <TooltipTrigger>
-          <Button asChild variant="ghost" className={cn('transition-transform hover:scale-120 hover:bg-transparent', {  })}>
+          <Button
+            asChild
+            variant="ghost"
+            className={cn('transition-transform hover:scale-120 hover:bg-transparent', {})}
+          >
             <Link to={linkTo}>{children}</Link>
           </Button>
         </TooltipTrigger>

@@ -7,12 +7,12 @@ import { cn } from '@/lib/utils';
 export const BackgroundGradientAnimation = ({
   gradientBackgroundStart = 'rgb(108, 0, 162)',
   gradientBackgroundEnd = 'rgb(0, 17, 82)',
-  firstColor = '18, 113, 255',
-  secondColor = '221, 74, 255',
-  thirdColor = '100, 220, 255',
-  fourthColor = '200, 50, 50',
-  fifthColor = '180, 180, 50',
-  pointerColor = '140, 100, 255',
+  firstColor = '9, 57, 127',
+  secondColor = '110, 37, 127',
+  thirdColor = '50, 110, 127',
+  fourthColor = '100, 25, 25',
+  fifthColor = '90, 90, 25',
+  pointerColor = '98, 70, 178',
   size = '80%',
   blendingValue = 'hard-light',
   children,
@@ -72,6 +72,7 @@ export const BackgroundGradientAnimation = ({
     setCurX((curX) => curX + (tgX - curX) / 20);
     setCurY((curY) => curY + (tgY - curY) / 20);
     interactiveRef.current.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tgX, tgY]);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -96,7 +97,7 @@ export const BackgroundGradientAnimation = ({
     >
       <svg className="hidden">
         <defs>
-          <filter id="blurMe">
+          <filter id="bg-gradient-filter">
             <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
             <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
             <feBlend in="SourceGraphic" in2="goo" />
@@ -107,13 +108,13 @@ export const BackgroundGradientAnimation = ({
       <div
         className={cn(
           'gradients-container h-full w-full blur-lg',
-          isSafari ? 'blur-2xl' : '[filter:url(#blurMe)_blur(40px)]',
+          isSafari ? 'blur-2xl' : '[filter:url(#bg-gradient-filter)_blur(40px)]',
         )}
       >
         <div
           className={cn(
             `absolute [background:radial-gradient(circle_at_center,_var(--first-color)_0,_var(--first-color)_50%)_no-repeat]`,
-            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
+            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(20%-var(--size)/2)] left-[calc(30%-var(--size)/2)]`,
             `[transform-origin:center_center]`,
             `animate-gradient-first`,
             `opacity-100`,
@@ -122,7 +123,7 @@ export const BackgroundGradientAnimation = ({
         <div
           className={cn(
             `absolute [background:radial-gradient(circle_at_center,_rgba(var(--second-color),_0.8)_0,_rgba(var(--second-color),_0)_50%)_no-repeat]`,
-            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
+            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(80%-var(--size)/2)] left-[calc(70%-var(--size)/2)]`,
             `[transform-origin:calc(50%-400px)]`,
             `animate-gradient-second`,
             `opacity-100`,
@@ -131,7 +132,7 @@ export const BackgroundGradientAnimation = ({
         <div
           className={cn(
             `absolute [background:radial-gradient(circle_at_center,_rgba(var(--third-color),_0.8)_0,_rgba(var(--third-color),_0)_50%)_no-repeat]`,
-            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
+            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(60%-var(--size)/2)] left-[calc(45%-var(--size)/2)]`,
             `[transform-origin:calc(50%+400px)]`,
             `animate-gradient-third`,
             `opacity-100`,
@@ -140,7 +141,7 @@ export const BackgroundGradientAnimation = ({
         <div
           className={cn(
             `absolute [background:radial-gradient(circle_at_center,_rgba(var(--fourth-color),_0.8)_0,_rgba(var(--fourth-color),_0)_50%)_no-repeat]`,
-            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
+            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(21%-var(--size)/2)] left-[calc(77%-var(--size)/2)]`,
             `[transform-origin:calc(50%-200px)]`,
             `animate-gradient-fourth`,
             `opacity-70`,

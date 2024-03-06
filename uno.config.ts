@@ -37,5 +37,6 @@ export default defineConfig({
     ['animate-gradient-third', { animation: 'moveInCircle 40s linear infinite' }],
     ['animate-gradient-fourth', { animation: 'moveHorizontal 40s ease infinite' }],
     ['animate-gradient-fifth', { animation: 'moveInCircle 20s ease infinite' }],
+    ['animate-shimmer', { animation: 'shimmer 2s linear infinite' }],
   ],
 });
