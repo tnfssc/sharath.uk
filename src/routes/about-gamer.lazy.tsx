@@ -7,7 +7,6 @@ import HorizonImage from '@/assets/images/horizon.jpg?w=480&h=270&format=webp&im
 import LittleNightmaresImage from '@/assets/images/little-nightmares.jpg?w=480&h=270&format=webp&image';
 import MinecraftImage from '@/assets/images/minecraft.jpg?w=480&h=270&format=webp&image';
 import { PageWrapper } from '@/components/page-wrapper';
-import { BackgroundGradientAnimation } from '@/components/ui/background-gradient-animation';
 import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid';
 import { Typography } from '@/components/ui/typography';
 
@@ -18,31 +17,23 @@ export const Route = createLazyFileRoute('/about-gamer')({
 function AboutGamer() {
   return (
     <PageWrapper>
-      <BackgroundGradientAnimation>
-        <div className="absolute z-10 max-h-screen overflow-auto">
-          <div className="h-screen w-screen flex flex-col items-center justify-center">
-            <div className="max-h-screen overflow-auto pb-24">
-              <Typography variant="h1" className="my-8 w-full text-center">
-                Gamer
-              </Typography>
-              <div className="grid place-items-center p-2 pt-4 sm:pt-8">
-                <BentoGrid className="mx-auto max-w-4xl">
-                  {items.map((item, i) => (
-                    <BentoGridItem
-                      key={i}
-                      title={item.title}
-                      description={item.description}
-                      header={item.header}
-                      icon={item.icon}
-                      className={i === 3 || i === 6 ? 'md:col-span-2' : ''}
-                    />
-                  ))}
-                </BentoGrid>
-              </div>
-            </div>
-          </div>
-        </div>
-      </BackgroundGradientAnimation>
+      <Typography variant="h1" className="my-8 w-full text-center">
+        Gamer
+      </Typography>
+      <div className="grid place-items-center p-2 pt-4 sm:pt-8">
+        <BentoGrid className="mx-auto max-w-4xl">
+          {items.map((item, i) => (
+            <BentoGridItem
+              key={i}
+              title={item.title}
+              description={item.description}
+              header={item.header}
+              icon={item.icon}
+              className={i === 3 || i === 6 ? 'md:col-span-2' : ''}
+            />
+          ))}
+        </BentoGrid>
+      </div>
     </PageWrapper>
   );
 }

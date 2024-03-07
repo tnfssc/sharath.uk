@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+import { useSettings } from '@/hooks/useSettings';
 import { cn } from '@/lib/utils';
 
 export const BackgroundGradientAnimation = ({
@@ -88,6 +89,8 @@ export const BackgroundGradientAnimation = ({
     setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
   }, []);
 
+  const { gradient } = useSettings();
+
   return (
     <div
       className={cn(
@@ -118,6 +121,7 @@ export const BackgroundGradientAnimation = ({
             `[transform-origin:center_center]`,
             `animate-gradient-first`,
             `opacity-100`,
+            { hidden: !gradient },
           )}
         ></div>
         <div
@@ -127,6 +131,7 @@ export const BackgroundGradientAnimation = ({
             `[transform-origin:calc(50%-400px)]`,
             `animate-gradient-second`,
             `opacity-100`,
+            { hidden: !gradient },
           )}
         ></div>
         <div
@@ -136,6 +141,7 @@ export const BackgroundGradientAnimation = ({
             `[transform-origin:calc(50%+400px)]`,
             `animate-gradient-third`,
             `opacity-100`,
+            { hidden: !gradient },
           )}
         ></div>
         <div
@@ -145,6 +151,7 @@ export const BackgroundGradientAnimation = ({
             `[transform-origin:calc(50%-200px)]`,
             `animate-gradient-fourth`,
             `opacity-70`,
+            { hidden: !gradient },
           )}
         ></div>
         <div
@@ -154,6 +161,7 @@ export const BackgroundGradientAnimation = ({
             `[transform-origin:calc(50%-800px)_calc(50%+800px)]`,
             `animate-gradient-fifth`,
             `opacity-100`,
+            { hidden: !gradient },
           )}
         ></div>
 
@@ -165,6 +173,7 @@ export const BackgroundGradientAnimation = ({
               `absolute [background:radial-gradient(circle_at_center,_rgba(var(--pointer-color),_0.8)_0,_rgba(var(--pointer-color),_0)_50%)_no-repeat]`,
               `[mix-blend-mode:var(--blending-value)] w-full h-full -top-1/2 -left-1/2`,
               `opacity-70`,
+              { hidden: !gradient },
             )}
           ></div>
         )}

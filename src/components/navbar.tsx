@@ -1,5 +1,5 @@
 import { Link, type LinkProps } from '@tanstack/react-router';
-import { HomeIcon, User2Icon, RotateCcwIcon } from 'lucide-react';
+import { HomeIcon, RotateCcwIcon, SettingsIcon, User2Icon } from 'lucide-react';
 
 import { ModeToggle } from '@/components/mode-toggle';
 import { Button } from '@/components/ui/button';
@@ -32,7 +32,7 @@ const NavMenuItem = ({
 
 export default function NavBar() {
   return (
-    <div className="absolute z-10 m-2 mt-[calc(100vh-74px)] h-fit w-fit border border-foreground rounded-full bg-background">
+    <div className="absolute z-1000 m-2 mt-[calc(100vh-74px)] h-fit w-fit border border-foreground rounded-full bg-background">
       <NavigationMenu className="m-2 mx-5">
         <NavigationMenuList>
           <NavMenuItem tooltip="Home" linkTo="/">
@@ -47,6 +47,9 @@ export default function NavBar() {
           <NavigationMenuItem>
             <ModeToggle className="transition-transform hover:scale-120 hover:bg-transparent" />
           </NavigationMenuItem>
+          <NavMenuItem tooltip="Settings" linkTo="/settings">
+            <SettingsIcon size={20} />
+          </NavMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
     </div>

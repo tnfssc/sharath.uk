@@ -13,11 +13,13 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as SettingsImport } from './routes/settings'
 
 // Create Virtual Routes
 
 const PrevSitesLazyImport = createFileRoute('/prev-sites')()
 const AboutGamerLazyImport = createFileRoute('/about-gamer')()
+const AboutDeveloperLazyImport = createFileRoute('/about-developer')()
 const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
 
@@ -33,10 +35,22 @@ const AboutGamerLazyRoute = AboutGamerLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/about-gamer.lazy').then((d) => d.Route))
 
+const AboutDeveloperLazyRoute = AboutDeveloperLazyImport.update({
+  path: '/about-developer',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/about-developer.lazy').then((d) => d.Route),
+)
+
 const AboutLazyRoute = AboutLazyImport.update({
   path: '/about',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
+
+const SettingsRoute = SettingsImport.update({
+  path: '/settings',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -51,8 +65,16 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/settings': {
+      preLoaderRoute: typeof SettingsImport
+      parentRoute: typeof rootRoute
+    }
     '/about': {
       preLoaderRoute: typeof AboutLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/about-developer': {
+      preLoaderRoute: typeof AboutDeveloperLazyImport
       parentRoute: typeof rootRoute
     }
     '/about-gamer': {
@@ -70,7 +92,9 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
+  SettingsRoute,
   AboutLazyRoute,
+  AboutDeveloperLazyRoute,
   AboutGamerLazyRoute,
   PrevSitesLazyRoute,
 ])
