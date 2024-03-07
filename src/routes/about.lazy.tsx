@@ -22,7 +22,7 @@ function About() {
       <BackgroundGradientAnimation>
         <div className="absolute z-10 max-h-screen overflow-auto">
           <div className="h-screen w-screen flex flex-col items-center justify-center">
-            <div className='max-h-screen overflow-auto pb-24'>
+            <div className="max-h-screen overflow-auto pb-24">
               <Typography variant="h1" className="my-8 w-full text-center">
                 About
               </Typography>
