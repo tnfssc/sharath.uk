@@ -17,9 +17,9 @@ function About() {
   const reactLogo = useReactLogo();
   const mediumLogo = useMediumLogo();
   return (
-    <PageWrapper>
+    <PageWrapper className='pb-24'>
       <Typography variant="h1" className="my-8 w-full text-center">
-        About
+        I am a
       </Typography>
       <div className="grid grid-cols-1 max-w-5xl place-items-center gap-4 container lg:grid-cols-3">
         <SkillCard
@@ -66,7 +66,7 @@ function About() {
               </div>
             </div>
           }
-          to="/about-gamer"
+          to="/about-writer"
         />
       </div>
     </PageWrapper>

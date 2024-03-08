@@ -18,9 +18,9 @@ function __Root() {
         <NavBar />
         <div className="relative h-screen w-full flex items-center justify-center overflow-hidden rounded-md antialiased">
           <BackgroundGradientAnimation>
-            <div className="absolute z-1 max-h-screen overflow-auto">
+            <div className="absolute z-1 max-h-screen overflow-hidden">
               <div className="h-screen w-screen flex flex-col items-center justify-center">
-                <div className="max-h-screen overflow-auto pb-24">
+                <div className="max-h-screen overflow-auto">
                   <Outlet />
                 </div>
               </div>

@@ -10,7 +10,7 @@ export const Route = createLazyFileRoute('/prev-sites')({
 
 function PrevSites() {
   return (
-    <PageWrapper>
+    <PageWrapper className='pb-24'>
       <div className="flex flex-col items-center justify-center gap-5">
         <motion.a
           className="w-52 b b-foreground bg-background p-2 text-center text-foreground transition-all active:scale-90 hover:scale-110 active:b-0 active:bg-foreground active:text-background"
