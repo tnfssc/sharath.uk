@@ -85,7 +85,7 @@ const items = [
   {
     title: 'htOS',
     // TODO: Change this link
-    link: 'https://admin.htos.sharath.co.in/',
+    link: 'https://htos-demo.sharath.uk/',
     thumbnail: HtOSImage,
     aspectRatio: 2128 / 2151,
     description: 'A Hostel Management System for IIT Hyderabad.',
