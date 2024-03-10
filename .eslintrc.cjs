@@ -13,7 +13,7 @@ module.exports = {
     '@unocss',
     'eslint-config-prettier',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs', '*.config.ts'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', '*.config.ts', '*.fixture.tsx', 'cosmos.decorator.tsx'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
