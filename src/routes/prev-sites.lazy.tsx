@@ -10,7 +10,7 @@ export const Route = createLazyFileRoute('/prev-sites')({
 
 function PrevSites() {
   return (
-    <PageWrapper className='pb-24'>
+    <PageWrapper className="pb-24">
       <div className="flex flex-col items-center justify-center gap-5">
         <motion.a
           className="w-52 b b-foreground bg-background p-2 text-center text-foreground transition-all active:scale-90 hover:scale-110 active:b-0 active:bg-foreground active:text-background"
@@ -30,7 +30,7 @@ function PrevSites() {
           href={PreviousSites.v4}
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
-          transition={{ duration: 0.1, delay: 0.2, ease: 'easeIn'  }}
+          transition={{ duration: 0.1, delay: 0.2, ease: 'easeIn' }}
         >
           Jan 2023 - Mar 2024 (v4)
         </motion.a>
@@ -41,7 +41,7 @@ function PrevSites() {
           href={PreviousSites.v3}
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
-          transition={{ duration: 0.1, delay: 0.3, ease: 'easeIn'  }}
+          transition={{ duration: 0.1, delay: 0.3, ease: 'easeIn' }}
         >
           Aug 2022 - Apr 2023 (v3)
         </motion.a>
@@ -52,7 +52,7 @@ function PrevSites() {
           href={PreviousSites.v2}
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
-          transition={{ duration: 0.1, delay: 0.4, ease: 'easeIn'  }}
+          transition={{ duration: 0.1, delay: 0.4, ease: 'easeIn' }}
         >
           Dec 2021 - Sep 2022 (v2)
         </motion.a>

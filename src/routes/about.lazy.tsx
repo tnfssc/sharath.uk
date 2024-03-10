@@ -17,7 +17,7 @@ function About() {
   const reactLogo = useReactLogo();
   const mediumLogo = useMediumLogo();
   return (
-    <PageWrapper className='pb-24'>
+    <PageWrapper className="pb-24">
       <Typography variant="h1" className="my-8 w-full text-center">
         I am a
       </Typography>

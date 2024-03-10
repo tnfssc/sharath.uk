@@ -57,7 +57,7 @@ const GridItem = (item: (typeof items)[0]) => {
 
 function AboutDeveloper() {
   return (
-    <PageWrapper className='pb-24'>
+    <PageWrapper className="pb-24">
       <Typography variant="h1" className="my-8 w-full text-center">
         Developer
       </Typography>

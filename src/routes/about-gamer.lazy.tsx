@@ -17,7 +17,7 @@ export const Route = createLazyFileRoute('/about-gamer')({
 
 function AboutGamer() {
   return (
-    <PageWrapper className='pb-24'>
+    <PageWrapper className="pb-24">
       <Typography variant="h1" className="my-8 w-full text-center">
         Gamer
       </Typography>
