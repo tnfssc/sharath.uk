@@ -10,7 +10,7 @@ function Index() {
   return (
     <PageWrapper>
       <div className="h-30">
-        <h1 className="bg-opacity-50 from-gray to-foreground bg-gradient-to-b bg-clip-text text-center text-4xl text-transparent font-bold md:text-7xl">
+        <h1 className="bg-opacity-50 from-foreground to-foreground/[0.8] bg-gradient-to-r bg-clip-text text-center text-4xl text-transparent font-bold md:text-7xl">
           sharath.uk
         </h1>
         <p className="mx-auto mt-4 max-w-lg text-center text-base font-normal">
