@@ -1,3 +1,5 @@
 {
-  "prettier.configPath": ".prettierrc.cjs"
+  "eslint.workingDirectories": [
+    "./packages/ui"
+  ]
 }
