@@ -6,7 +6,7 @@ import { useSettings } from '@/hooks/useSettings';
 import { cn } from '@/lib/utils';
 
 export const BackgroundGradientAnimation = ({
-  gradientBackgroundStart = 'rgb(108, 0, 162)',
+  gradientBackgroundStart = 'rgb(14, 0, 0)',
   gradientBackgroundEnd = 'rgb(0, 17, 82)',
   firstColor = '9, 57, 127',
   secondColor = '110, 37, 127',
