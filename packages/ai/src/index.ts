@@ -33,7 +33,7 @@ const hono = new Hono()
       .then((res) => res.json<{ data: [string] }>())
       .catch(() => ({ data: ['Cats have over 20 muscles that control their ears.'] }));
 
-    const res = await env.AI.run('@cf/mistral/mistral-7b-instruct-v0.1', {
+    const res = await env.AI.run('@cf/meta/llama-3-8b-instruct', {
       messages: [
         {
           role: 'system',
