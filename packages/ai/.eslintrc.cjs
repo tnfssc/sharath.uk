@@ -5,33 +5,22 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/strict-type-checked',
     'plugin:@typescript-eslint/stylistic-type-checked',
-    'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
     'plugin:import-x/recommended',
     'plugin:import-x/typescript',
-    'plugin:jsx-a11y/recommended',
-    '@unocss',
     'eslint-config-prettier',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs', '*.config.ts', '*.fixture.tsx', 'cosmos.decorator.tsx'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', '.wrangler'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
     tsconfigRootDir: __dirname,
   },
-  plugins: ['react-refresh'],
   rules: {
-    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'import-x/no-unresolved': [
       'error',
       {
-        ignore: ['.svg', 'virtual:*', '@/*', 'routeTree.gen', 'sonner'],
+        ignore: ['@/*', 'hono/*', 'web-auth-library/*'],
       },
     ],
-    'react/prop-types': 'off',
-  },
-  settings: {
-    react: { version: 'detect' },
   },
 };

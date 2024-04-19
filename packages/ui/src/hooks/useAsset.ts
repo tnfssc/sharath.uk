@@ -30,7 +30,10 @@ export const useAsset = (url: string) => {
             reader.onerror = reject;
             reader.readAsDataURL(blob);
           })
-          .catch(reject);
+          .catch((e: unknown) => {
+            if (e instanceof Error) reject(e);
+            else reject(new Error('Failed to fetch asset'));
+          });
       });
 
     void fetchAsset();

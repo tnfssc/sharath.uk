@@ -1,5 +1,6 @@
 {
   "eslint.workingDirectories": [
     "./packages/ui"
-  ]
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

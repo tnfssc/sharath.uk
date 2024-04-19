@@ -72,7 +72,7 @@ export const BackgroundGradientAnimation = ({
     }
     setCurX((curX) => curX + (tgX - curX) / 20);
     setCurY((curY) => curY + (tgY - curY) / 20);
-    interactiveRef.current.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
+    interactiveRef.current.style.transform = `translate(${Math.round(curX).toString()}px, ${Math.round(curY).toString()}px)`;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tgX, tgY]);
 

@@ -8,7 +8,7 @@ export const Meteors = ({ number, className }: { number?: number; className?: st
     <>
       {meteors.map((_, idx) => (
         <span
-          key={'meteor' + idx}
+          key={`meteor ${idx.toString()}`}
           className={cn(
             'animate-forwards animate-meteor-effect absolute h-0.5 w-0.5 rounded-full bg-background shadow-background rotate-[215deg]',
             'before:content-empty before:absolute before:top-1/2 before:transform before:-translate-y-[50%] before:w-[100px] before:h-[2px] before:bg-gradient-to-r before:from-gray before:to-transparent',
@@ -16,9 +16,9 @@ export const Meteors = ({ number, className }: { number?: number; className?: st
           )}
           style={{
             top: 0,
-            left: Math.floor(Math.random() * (windowSize.width - -windowSize.width) + -windowSize.width) + 'px',
-            animationDelay: Math.random() * (0.8 - 0.2) + 0.2 + 's',
-            animationDuration: Math.floor(Math.random() * (15 - 4) + 4) + 's',
+            left: `${Math.floor(Math.random() * (windowSize.width - -windowSize.width) + -windowSize.width).toString()}px`,
+            animationDelay: (Math.random() * (0.8 - 0.2) + 0.2).toString() + 's',
+            animationDuration: Math.floor(Math.random() * (15 - 4) + 4).toString() + 's',
           }}
         />
       ))}

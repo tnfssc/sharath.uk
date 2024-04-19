@@ -4,6 +4,7 @@ import { TanStackRouterDevtools } from '@/components/__DEV__/TanStackRouterDevto
 import NavBar from '@/components/navbar';
 import { BackgroundGradientAnimation } from '@/components/ui/background-gradient-animation';
 import { Meteors } from '@/components/ui/meteors';
+import { Toaster } from '@/components/ui/sonner';
 import { useSettings } from '@/hooks/useSettings';
 
 export const Route = createRootRoute({
@@ -28,6 +29,7 @@ function __Root() {
           </BackgroundGradientAnimation>
           {meteors && <Meteors number={20} />}
         </div>
+        <Toaster position="top-right" />
         <TanStackRouterDevtools />
       </div>
     </div>

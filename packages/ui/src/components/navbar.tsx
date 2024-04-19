@@ -1,11 +1,12 @@
 import { Link, type LinkProps } from '@tanstack/react-router';
-import { HomeIcon, RotateCcwIcon, SettingsIcon, User2Icon } from 'lucide-react';
+import { CircleEllipsisIcon, HomeIcon, LogInIcon, LogOutIcon, RotateCcwIcon, User2Icon } from 'lucide-react';
 
 import { ModeToggle } from '@/components/mode-toggle';
 import { Button } from '@/components/ui/button';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from '@/components/ui/navigation-menu';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
+import { useAuthStore } from '@/store/auth';
 
 const NavMenuItem = ({
   children,
@@ -30,6 +31,33 @@ const NavMenuItem = ({
   );
 };
 
+const SignInItem = () => {
+  const { login, logout, user } = useAuthStore();
+  return (
+    <NavigationMenuItem>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            variant="ghost"
+            className={cn('transition-transform hover:scale-120 hover:bg-transparent', {})}
+            disabled={user === undefined}
+            onClick={user === null ? login : logout}
+          >
+            {user === undefined && <CircleEllipsisIcon size={20} className="animate-bounce" />}
+            {user === null && <LogInIcon size={20} />}
+            {user && <LogOutIcon size={20} />}
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          {user === undefined && 'Loading...'}
+          {user === null && 'Sign in'}
+          {user && 'Sign out'}
+        </TooltipContent>
+      </Tooltip>
+    </NavigationMenuItem>
+  );
+};
+
 export default function NavBar() {
   return (
     <div className="absolute z-1000 m-2 mt-[calc(100vh-74px)] h-fit w-fit border border-foreground rounded-full bg-background">
@@ -47,9 +75,7 @@ export default function NavBar() {
           <NavigationMenuItem>
             <ModeToggle className="transition-transform hover:scale-120 hover:bg-transparent" />
           </NavigationMenuItem>
-          <NavMenuItem tooltip="Settings" linkTo="/settings">
-            <SettingsIcon size={20} />
-          </NavMenuItem>
+          <SignInItem />
         </NavigationMenuList>
       </NavigationMenu>
     </div>
