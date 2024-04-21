@@ -1,7 +1,7 @@
 import { verifyIdToken as googleVerifyIdToken } from 'web-auth-library/google';
 import { z } from 'zod';
 
-import type { Env } from '..';
+import type { Env } from '@/env';
 
 const firebaseAdminConfigSchema = z.object({
   type: z.literal('service_account'),
@@ -20,7 +20,7 @@ const firebaseAdminConfigSchema = z.object({
 export const getFirebaseAdminConfig = (env: Env) =>
   firebaseAdminConfigSchema.parse(JSON.parse(env.FIREBASE_SERVICE_ACCOUNT_KEY));
 
-export const verifyIdToken = async (idToken: string, env: Env) => {
+export const verifyIdToken = async (env: Env, idToken: string) => {
   const firebaseAdminConfig = getFirebaseAdminConfig(env);
 
   return await googleVerifyIdToken({

@@ -2,6 +2,7 @@
   "name": "@sharath.uk/ai",
   "version": "0.0.0",
   "private": true,
+  "module": "src/index.ts",
   "scripts": {
     "check-types": "tsc --noEmit",
     "deploy": "wrangler deploy",
@@ -11,7 +12,6 @@
     "start": "wrangler dev"
   },
   "dependencies": {
-    "fortune-ts": "^1.1.7",
     "hono": "^4.2.4",
     "web-auth-library": "^1.0.3",
     "zod": "^3.22.4"

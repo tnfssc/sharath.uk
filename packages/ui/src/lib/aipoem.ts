@@ -1,16 +1,15 @@
 import { useAuthStore } from '@/store/auth';
 
-export const streamAI = async (signal?: AbortSignal) => {
-  if (!import.meta.env.VITE_AI_ENDPOINT) throw new Error('AI endpoint not set');
-  const idToken = await useAuthStore.getState().user?.getIdToken();
-  if (!idToken) throw new Error('User not logged in');
+import { hono } from './hono';
 
-  const res = await fetch(import.meta.env.VITE_AI_ENDPOINT as string, {
+export const streamAI = async (signal?: AbortSignal) => {
+  const res = await fetch(hono.aipoem.$url(), {
     signal,
     headers: {
-      Authorization: `Bearer ${idToken}`,
+      Authorization: `Bearer ${(await useAuthStore.getState().user?.getIdToken()) ?? ''}`,
     },
   });
+
   if (!res.ok || !res.body) {
     throw new Error('Failed to fetch AI response');
   }
