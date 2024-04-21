@@ -17,9 +17,12 @@ function Index() {
   const imageQuery = useQuery({
     queryKey: ['poem-thumbnail'],
     queryFn: async () => {
-      const img = await (await hono.poemthumbnail.$get()).blob();
+      const res = await hono.poemthumbnail.$get();
+      if (!res.ok) throw new Error('Failed to fetch image');
+      const img = await res.blob();
       return URL.createObjectURL(img);
     },
+    enabled: !!user,
   });
 
   const queryStream = useQueryStream({
@@ -62,7 +65,7 @@ function Index() {
         {imageQuery.data && (
           <img width={200} height={200} src={imageQuery.data} alt="unknown" className="m-8 rounded" />
         )}
-        {!imageQuery.data && (
+        {imageQuery.isLoading && (
           <div className="grid m-8 h-[200px] w-[200px] animate-pulse place-items-center rounded bg-secondary">
             Loading...
           </div>
