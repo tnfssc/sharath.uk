@@ -19,7 +19,7 @@ module.exports = {
     'import-x/no-unresolved': [
       'error',
       {
-        ignore: ['@/*', 'hono/*', 'web-auth-library/*'],
+        ignore: ['$/*', 'hono/*', 'web-auth-library/*'],
       },
     ],
   },

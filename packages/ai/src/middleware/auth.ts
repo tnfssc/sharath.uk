@@ -1,8 +1,7 @@
+import { envSchema } from 'ai/env';
+import { verifyIdToken } from 'ai/lib/firebase';
 import type { MiddlewareHandler } from 'hono';
 import { HTTPException } from 'hono/http-exception';
-
-import { envSchema } from '@/env';
-import { verifyIdToken } from '@/lib/firebase';
 
 export const isAuthorized = async (_env: unknown, idToken: string | undefined) => {
   const env = envSchema.parse(_env);

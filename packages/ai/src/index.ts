@@ -1,9 +1,8 @@
+import { auth } from 'ai/middleware/auth';
+import { AIPoem } from 'ai/routes/aipoem';
+import { PoemThumbnail } from 'ai/routes/poemthumbnail';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
-
-import { auth } from '@/middleware/auth';
-import { AIPoem } from '@/routes/aipoem';
-import { PoemThumbnail } from '@/routes/poemthumbnail';
 
 const hono = new Hono()
   .use(cors())

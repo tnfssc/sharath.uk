@@ -1,7 +1,6 @@
+import type { Env } from 'ai/env';
 import { verifyIdToken as googleVerifyIdToken } from 'web-auth-library/google';
 import { z } from 'zod';
-
-import type { Env } from '@/env';
 
 const firebaseAdminConfigSchema = z.object({
   type: z.literal('service_account'),

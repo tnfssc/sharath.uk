@@ -18,7 +18,7 @@
     "verbatimModuleSyntax": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "ai/*": ["./src/*"]
     }
   },
   "exclude": ["test"]

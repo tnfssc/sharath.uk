@@ -1,7 +1,6 @@
+import { TextGeneration } from 'ai/lib/ai';
 import type { Handler } from 'hono';
 import { stream } from 'hono/streaming';
-
-import { TextGeneration } from '@/lib/ai';
 
 export const AIPoem: Handler = async (c) => {
   const {

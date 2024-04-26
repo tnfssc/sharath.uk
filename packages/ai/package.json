@@ -4,12 +4,12 @@
   "private": true,
   "module": "src/index.ts",
   "scripts": {
-    "check-types": "tsc --noEmit",
-    "deploy": "wrangler deploy",
-    "dev": "wrangler dev --remote",
+    "check-types": "bun --bun x tsc --noEmit",
+    "deploy": "bun --bun x wrangler deploy",
+    "dev": "bun --bun x wrangler dev --remote",
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --report-unused-disable-directives --max-warnings 0",
-    "start": "wrangler dev"
+    "start": "bun --bun x wrangler dev"
   },
   "dependencies": {
     "hono": "^4.2.4",

@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "bun --bun x vite build",
-    "check-types": "bun --bun x tsc --noEmit",
+    "build": "bun --bun x tsc && bun --bun x vite build",
+    "check-types": "bun --bun x tsc",
     "cosmos": "cosmos",
     "cosmos-export": "cosmos-export",
     "coverage": "vitest run --coverage",
@@ -16,6 +16,7 @@
     "test": "vitest"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240423.0",
     "@iconify/json": "^2.2.188",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
