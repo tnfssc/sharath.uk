@@ -23,6 +23,7 @@ This is a Cloudflare Workers AI API that I use to show poems on my website.
 
 ![cloudflare/workers](https://img.shields.io/badge/Workers-000000?style=for-the-badge&logo=cloudflareworkers)
 ![llama3](https://img.shields.io/badge/LLAMA3-000000?style=for-the-badge&logo=meta)
+![dreamshaper](https://img.shields.io/badge/DreamShaper-000000?style=for-the-badge&logo=imagedotsc)
 ![hono](https://img.shields.io/badge/hono-000000?style=for-the-badge&logo=hono)
 ![firebase](https://img.shields.io/badge/Firebase-000000?style=for-the-badge&logo=firebase)
 
