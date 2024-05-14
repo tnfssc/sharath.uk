@@ -1,4 +1,4 @@
-import { TextGeneration } from 'ai/lib/ai';
+import { TextGeneration } from 'api/lib/ai';
 import type { Handler } from 'hono';
 import { stream } from 'hono/streaming';
 

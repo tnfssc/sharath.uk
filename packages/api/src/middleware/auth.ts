@@ -1,5 +1,5 @@
-import { envSchema } from 'ai/env';
-import { verifyIdToken } from 'ai/lib/firebase';
+import { envSchema } from 'api/env';
+import { verifyIdToken } from 'api/lib/firebase';
 import type { MiddlewareHandler } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 

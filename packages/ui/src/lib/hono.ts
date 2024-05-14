@@ -1,4 +1,4 @@
-import type { HonoType } from '@sharath.uk/ai/src';
+import type { HonoType } from '@sharath.uk/api/src';
 import { hc } from 'hono/client';
 
 import { auth } from '@/lib/firebase';

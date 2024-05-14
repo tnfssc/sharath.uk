@@ -17,9 +17,9 @@ This is the UI part of my website which contains the entire website made using R
 
 ---
 
-## [@sharath.uk/ai](./packages/ai)
+## [@sharath.uk/api](./packages/api)
 
-This is a Cloudflare Workers AI API that I use to show poems on my website.
+This is a Cloudflare Workers API that I use to show poems on my website.
 
 ![cloudflare/workers](https://img.shields.io/badge/Workers-000000?style=for-the-badge&logo=cloudflareworkers)
 ![llama3](https://img.shields.io/badge/LLAMA3-000000?style=for-the-badge&logo=meta)
@@ -31,7 +31,7 @@ This is a Cloudflare Workers AI API that I use to show poems on my website.
 
 ## Instructions
 
-- Create a file called `.dev.vars` at `./packages/ai/.dev.vars` with the following content:
+- Create a file called `.dev.vars` at `./packages/api/.dev.vars` with the following content:
 
 ```sh
 FIREBASE_SERVICE_ACCOUNT_KEY='{...}'

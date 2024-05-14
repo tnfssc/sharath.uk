@@ -25,7 +25,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.3",
     "@radix-ui/react-tooltip": "^1.0.7",
-    "@sharath.uk/ai": "workspace:../ai",
+    "@sharath.uk/api": "workspace:../api",
     "@tanstack/react-query": "^5.32.0",
     "@tanstack/react-router": "^1.31.1",
     "@tanstack/router-devtools": "^1.31.1",

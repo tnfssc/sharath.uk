@@ -1,15 +1,15 @@
 {
-  "name": "@sharath.uk/ai",
+  "name": "@sharath.uk/api",
   "version": "0.0.0",
   "private": true,
   "module": "src/index.ts",
   "scripts": {
     "check-types": "bun --bun x tsc --noEmit",
-    "deploy": "bun --bun x wrangler deploy",
-    "dev": "bun --bun x wrangler dev --remote",
+    "deploy": "bun x wrangler deploy",
+    "dev": "bun x wrangler dev --remote",
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --report-unused-disable-directives --max-warnings 0",
-    "start": "bun --bun x wrangler dev"
+    "start": "bun x wrangler dev"
   },
   "dependencies": {
     "hono": "^4.2.4",

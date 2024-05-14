@@ -1,4 +1,4 @@
-import { ImageGeneration } from 'ai/lib/ai';
+import { ImageGeneration } from 'api/lib/ai';
 import type { Handler } from 'hono';
 
 export const PoemThumbnail: Handler = async (c) => {

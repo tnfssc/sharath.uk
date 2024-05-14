@@ -1,6 +1,6 @@
-import { auth } from 'ai/middleware/auth';
-import { AIPoem } from 'ai/routes/aipoem';
-import { PoemThumbnail } from 'ai/routes/poemthumbnail';
+import { auth } from 'api/middleware/auth';
+import { AIPoem } from 'api/routes/aipoem';
+import { PoemThumbnail } from 'api/routes/poemthumbnail';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 

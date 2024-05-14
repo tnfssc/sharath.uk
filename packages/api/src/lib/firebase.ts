@@ -1,4 +1,4 @@
-import type { Env } from 'ai/env';
+import type { Env } from 'api/env';
 import { verifyIdToken as googleVerifyIdToken } from 'web-auth-library/google';
 import { z } from 'zod';
 
