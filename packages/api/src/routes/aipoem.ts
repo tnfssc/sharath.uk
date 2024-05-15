@@ -1,8 +1,9 @@
+import type { HonoEnv } from 'api/env';
 import { TextGeneration } from 'api/lib/ai';
 import type { Handler } from 'hono';
 import { stream } from 'hono/streaming';
 
-export const AIPoem: Handler = async (c) => {
+export const AIPoem: Handler<HonoEnv> = async (c) => {
   const {
     data: [fact],
   }: { data: [string] } = await fetch('https://meowfacts.herokuapp.com/')

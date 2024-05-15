@@ -17,6 +17,7 @@ import { Route as SettingsImport } from './routes/settings'
 
 // Create Virtual Routes
 
+const YoutubeSummarizerLazyImport = createFileRoute('/youtube-summarizer')()
 const PrevSitesLazyImport = createFileRoute('/prev-sites')()
 const AboutWriterLazyImport = createFileRoute('/about-writer')()
 const AboutGamerLazyImport = createFileRoute('/about-gamer')()
@@ -25,6 +26,13 @@ const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
+
+const YoutubeSummarizerLazyRoute = YoutubeSummarizerLazyImport.update({
+  path: '/youtube-summarizer',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/youtube-summarizer.lazy').then((d) => d.Route),
+)
 
 const PrevSitesLazyRoute = PrevSitesLazyImport.update({
   path: '/prev-sites',
@@ -95,6 +103,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrevSitesLazyImport
       parentRoute: typeof rootRoute
     }
+    '/youtube-summarizer': {
+      preLoaderRoute: typeof YoutubeSummarizerLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -108,6 +120,7 @@ export const routeTree = rootRoute.addChildren([
   AboutGamerLazyRoute,
   AboutWriterLazyRoute,
   PrevSitesLazyRoute,
+  YoutubeSummarizerLazyRoute,
 ])
 
 /* prettier-ignore-end */

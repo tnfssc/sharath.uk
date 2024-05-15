@@ -1,7 +1,14 @@
 import { Link, type LinkProps } from '@tanstack/react-router';
-import { CircleEllipsisIcon, HomeIcon, LogInIcon, LogOutIcon, RotateCcwIcon, User2Icon } from 'lucide-react';
+import {
+  CircleEllipsisIcon,
+  HomeIcon,
+  LogInIcon,
+  LogOutIcon,
+  RotateCcwIcon,
+  User2Icon,
+  YoutubeIcon,
+} from 'lucide-react';
 
-import { ModeToggle } from '@/components/mode-toggle';
 import { Button } from '@/components/ui/button';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from '@/components/ui/navigation-menu';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
@@ -69,12 +76,12 @@ export default function NavBar() {
           <NavMenuItem tooltip="Profile" linkTo="/about">
             <User2Icon size={20} />
           </NavMenuItem>
+          <NavMenuItem tooltip="Youtube Summarizer" linkTo="/youtube-summarizer">
+            <YoutubeIcon size={20} />
+          </NavMenuItem>
           <NavMenuItem tooltip="Previous versions" linkTo="/prev-sites">
             <RotateCcwIcon size={20} />
           </NavMenuItem>
-          <NavigationMenuItem>
-            <ModeToggle className="transition-transform hover:scale-120 hover:bg-transparent" />
-          </NavigationMenuItem>
           <SignInItem />
         </NavigationMenuList>
       </NavigationMenu>

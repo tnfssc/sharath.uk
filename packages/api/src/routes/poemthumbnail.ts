@@ -1,7 +1,8 @@
+import type { HonoEnv } from 'api/env';
 import { ImageGeneration } from 'api/lib/ai';
 import type { Handler } from 'hono';
 
-export const PoemThumbnail: Handler = async (c) => {
+export const PoemThumbnail: Handler<HonoEnv> = async (c) => {
   const {
     data: [fact],
   }: { data: [string] } = await fetch('https://meowfacts.herokuapp.com/')

@@ -97,5 +97,5 @@ binding = "AI"
 # Bind a Vectorize index. Use to store and query vector embeddings for semantic search, classification and other vector search use-cases.
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#vectorize-indexes
 # [[vectorize]]
-# binding = "MY_INDEX"
-# index_name = "my-index"
+# binding = "VECTORIZE_INDEX"
+# index_name = "sharathuk-api"

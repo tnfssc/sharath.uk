@@ -9,7 +9,7 @@
     "dev": "bun --filter '@sharath.uk/*' dev"
   },
   "devDependencies": {
-    "@sharath.uk/api": "workspace:*",
-    "@sharath.uk/ui": "workspace:*"
+    "@sharath.uk/api": "workspace:packages/api",
+    "@sharath.uk/ui": "workspace:packages/ui"
   }
 }

@@ -35,6 +35,9 @@ This is a Cloudflare Workers API that I use to show poems on my website.
 
 ```sh
 FIREBASE_SERVICE_ACCOUNT_KEY='{...}'
+
+CLOUDFLARE_ACCOUNT_ID=...
+CLOUDFLARE_API_TOKEN=...
 ```
 
 - Create a file called `.env` at `./packages/ui/.env` with the following content:

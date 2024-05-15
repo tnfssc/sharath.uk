@@ -12,8 +12,13 @@
     "start": "bun x wrangler dev"
   },
   "dependencies": {
+    "@hono/zod-validator": "^0.2.1",
+    "@langchain/cloudflare": "^0.0.4",
     "hono": "^4.2.4",
+    "langchain": "^0.1.37",
     "web-auth-library": "^1.0.3",
+    "youtube-transcript": "^1.2.1",
+    "youtubei.js": "^9.4.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
