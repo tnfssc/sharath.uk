@@ -11,13 +11,13 @@ import { z } from 'zod';
 export const YoutubeSummarizerQuerySchema = z.object({ url: z.string().url().includes('https://').includes('youtu') });
 
 export const YoutubeSummarizer: Handler<HonoEnv> = (c) => {
-  c.header('Content-Encoding', 'text/plain');
+  c.header('Content-Encoding', 'none');
 
   return stream(c, async (stream) => {
     const { readable, writable } = new TransformStream<Uint8Array, Uint8Array>();
 
     const { url } = YoutubeSummarizerQuerySchema.parse({ url: c.req.query('url') });
-    const loader = YoutubeLoader.createFromUrl(url, { language: 'en' });
+    const loader = YoutubeLoader.createFromUrl(url);
     const docs = await loader.loadAndSplit(new RecursiveCharacterTextSplitter());
 
     const encoder = new TextEncoder();

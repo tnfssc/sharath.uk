@@ -41,18 +41,23 @@ function YoutubeSummarizer() {
     const res = await fetch(endpoint, {
       headers: { Authorization: `Bearer ${(await user?.getIdToken()) ?? ''}` },
     });
-    isLoading.set.false();
     if (!res.ok || !res.body) return toast.error('Failed to summarize the video');
 
     const readableStream = res.body;
     const decoder = new TextDecoder();
+    let text = '';
     const writeableStream = new WritableStream<Uint8Array>({
       write: (chunk) => {
         setSummary((p) => p + decoder.decode(chunk));
+        text = text + decoder.decode(chunk);
       },
     });
 
     await readableStream.pipeTo(writeableStream);
+    if (!text) {
+      toast.error('Some error occurred. Please try a different video.');
+    }
+    isLoading.set.false();
   };
 
   return (
@@ -73,12 +78,16 @@ function YoutubeSummarizer() {
               </FormItem>
             )}
           />
-          <Button variant="default" disabled={!form.formState.isValid || isLoading.value}>
+          <Button variant="default" disabled={!user || !form.formState.isValid || isLoading.value}>
             Submit
           </Button>
         </form>
       </Form>
-      <div className="max-w-4xl whitespace-pre-wrap p-4">{summary.trim().slice(0, -1)}</div>
+      <div className="max-w-4xl whitespace-pre-wrap p-4">
+        {!user && 'You must be logged in to use this.'}
+        {isLoading.value && !summary && 'Loading...'}
+        {summary.trim().slice(0, -1)}
+      </div>
     </PageWrapper>
   );
 }
