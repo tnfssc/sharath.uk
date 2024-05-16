@@ -47,6 +47,7 @@ TURSO_AUTH_TOKEN=...
 
 ```sh
 VITE_API_ENDPOINT='http://localhost:8787'
+VITE_PUBLIC_BASE_URL='http://localhost:5173'
 ```
 
 - Login to `wrangler-cli` using the following command:

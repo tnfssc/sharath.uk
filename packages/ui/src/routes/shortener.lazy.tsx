@@ -48,7 +48,7 @@ function Shortener() {
   const onSubmit = async ({ url }: v.Output<typeof formSchema>) => {
     setShortUrl('');
     const id = await shortenMutation.mutateAsync(url);
-    const shortUrl = `${env.VITE_PUBLIC_URL}/s/${id}`;
+    const shortUrl = `${env.VITE_PUBLIC_BASE_URL}/s/${id}`;
     setShortUrl(shortUrl);
     copyAndToast(shortUrl);
   };
