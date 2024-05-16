@@ -11,7 +11,7 @@ export const AIPoem: Handler<HonoEnv> = async (c) => {
       if (!res.ok) throw new Error('Failed to fetch');
       return res;
     })
-    .then((res) => res.json<{ data: [string] }>())
+    .then((res) => res.json() as Promise<{ data: [string] }>)
     .catch(() => ({ data: ['Cats have over 20 muscles that control their ears.'] }));
 
   const res = await TextGeneration.run(c.env, '@cf/meta/llama-3-8b-instruct', {

@@ -5,6 +5,9 @@
   "module": "src/index.ts",
   "scripts": {
     "check-types": "bun --bun x tsc --noEmit",
+    "db:gen": "bun x drizzle-kit generate",
+    "db:migrate": "bun x drizzle-kit migrate",
+    "db:studio": "bun x drizzle-kit studio",
     "deploy": "bun x wrangler deploy",
     "dev": "bun x wrangler dev --remote",
     "format": "prettier --write .",
@@ -14,6 +17,9 @@
   "dependencies": {
     "@hono/zod-validator": "^0.2.1",
     "@langchain/cloudflare": "^0.0.4",
+    "@libsql/client": "^0.6.0",
+    "@paralleldrive/cuid2": "^2.2.2",
+    "drizzle-orm": "^0.30.10",
     "hono": "^4.2.4",
     "langchain": "^0.1.37",
     "web-auth-library": "^1.0.3",
@@ -26,6 +32,8 @@
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@typescript-eslint/eslint-plugin": "^7.7.0",
     "@typescript-eslint/parser": "^7.7.0",
+    "dotenv": "^16.4.5",
+    "drizzle-kit": "^0.21.2",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import-x": "^0.5.0",

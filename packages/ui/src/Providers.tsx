@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AnimatePresence } from 'framer-motion';
+import { toast } from 'sonner';
 
 import { ThemeProvider } from '@/components/theme-provider';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -16,6 +17,11 @@ const queryClient = new QueryClient({
     },
     mutations: {
       retry: false,
+      onError(error, variables, context) {
+        console.error({ variables, context });
+        console.error(error);
+        toast.error(error.message);
+      },
     },
   },
 });

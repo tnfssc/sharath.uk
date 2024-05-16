@@ -1,12 +1,11 @@
 import type { HonoType } from '@sharath.uk/api/src';
 import { hc } from 'hono/client';
 
+import { env } from '@/env';
 import { auth } from '@/lib/firebase';
 import { useAuthStore } from '@/store/auth';
 
-if (!import.meta.env.VITE_AI_ENDPOINT) throw new Error('AI endpoint not set');
-
-export let hono = hc<HonoType>(import.meta.env.VITE_AI_ENDPOINT as string, {
+export let hono = hc<HonoType>(env.VITE_API_ENDPOINT, {
   headers: async () => {
     return {
       Authorization: `Bearer ${(await useAuthStore.getState().user?.getIdToken()) ?? ''}`,
@@ -15,7 +14,7 @@ export let hono = hc<HonoType>(import.meta.env.VITE_AI_ENDPOINT as string, {
 });
 
 auth.onAuthStateChanged((user) => {
-  hono = hc<HonoType>(import.meta.env.VITE_AI_ENDPOINT as string, {
+  hono = hc<HonoType>(env.VITE_API_ENDPOINT, {
     headers: async () => {
       return {
         Authorization: `Bearer ${(await user?.getIdToken()) ?? ''}`,

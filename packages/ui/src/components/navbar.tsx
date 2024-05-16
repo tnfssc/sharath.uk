@@ -4,12 +4,20 @@ import {
   HomeIcon,
   LogInIcon,
   LogOutIcon,
+  PenToolIcon,
   RotateCcwIcon,
+  ShoppingCartIcon,
   User2Icon,
   YoutubeIcon,
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from '@/components/ui/navigation-menu';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
@@ -65,6 +73,46 @@ const SignInItem = () => {
   );
 };
 
+const ToolsMenu = () => {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <NavigationMenuItem>
+          <Tooltip>
+            <TooltipTrigger>
+              <Button
+                asChild
+                variant="ghost"
+                className={cn('transition-transform hover:scale-120 hover:bg-transparent text-foreground', {})}
+              >
+                <Link>
+                  <PenToolIcon size={20} />
+                </Link>
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Tools</TooltipContent>
+          </Tooltip>
+        </NavigationMenuItem>
+      </DropdownMenuTrigger>
+
+      <DropdownMenuContent className="z-1000 w-56">
+        <DropdownMenuItem asChild className="cursor-pointer">
+          <Link to="/youtube-summarizer">
+            <YoutubeIcon size={20} />
+            &nbsp;&nbsp;Youtube summarizer
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild className="cursor-pointer">
+          <Link to="/shortener">
+            <ShoppingCartIcon size={20} />
+            &nbsp;&nbsp;URL shortener
+          </Link>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
+
 export default function NavBar() {
   return (
     <div className="absolute z-1000 m-2 mt-[calc(100vh-74px)] h-fit w-fit border border-foreground rounded-full bg-background">
@@ -76,9 +124,7 @@ export default function NavBar() {
           <NavMenuItem tooltip="Profile" linkTo="/about">
             <User2Icon size={20} />
           </NavMenuItem>
-          <NavMenuItem tooltip="Youtube Summarizer" linkTo="/youtube-summarizer">
-            <YoutubeIcon size={20} />
-          </NavMenuItem>
+          <ToolsMenu />
           <NavMenuItem tooltip="Previous versions" linkTo="/prev-sites">
             <RotateCcwIcon size={20} />
           </NavMenuItem>

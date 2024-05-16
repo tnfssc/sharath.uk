@@ -1,0 +1,1 @@
+ALTER TABLE `urls` ADD `createdBy` text NOT NULL;

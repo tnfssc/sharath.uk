@@ -38,12 +38,15 @@ FIREBASE_SERVICE_ACCOUNT_KEY='{...}'
 
 CLOUDFLARE_ACCOUNT_ID=...
 CLOUDFLARE_API_TOKEN=...
+
+TURSO_DATABASE_URL="libsql://....turso.io"
+TURSO_AUTH_TOKEN=...
 ```
 
 - Create a file called `.env` at `./packages/ui/.env` with the following content:
 
 ```sh
-VITE_AI_ENDPOINT='http://localhost:8787'
+VITE_API_ENDPOINT='http://localhost:8787'
 ```
 
 - Login to `wrangler-cli` using the following command:
