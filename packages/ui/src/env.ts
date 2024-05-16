@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
 export const envSchema = z.object({
-  VITE_API_ENDPOINT: z.string().url(),
-  VITE_PUBLIC_BASE_URL: z.string().url(),
+  VITE_API_ENDPOINT: z.string().url().optional().default('https://sharathuk-api.tnfssc.workers.dev'),
+  VITE_PUBLIC_BASE_URL: z.string().url().optional().default('https://www.sharath.uk'),
 });
 
 export type Env = z.infer<typeof envSchema>;
