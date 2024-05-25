@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import { onMount } from '@/hooks/onMount';
+import { useEffectOnce } from '@/hooks/useEffectOnce';
 
 const Cache = new Map<string, string>();
 
@@ -39,7 +39,7 @@ export const useAsset = (url: string) => {
     void fetchAsset();
   }, [url]);
 
-  onMount(() => {
+  useEffectOnce(() => {
     getAsset();
   });
 
