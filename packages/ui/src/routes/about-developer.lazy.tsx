@@ -84,7 +84,6 @@ const items = [
   },
   {
     title: 'htOS',
-    // TODO: Change this link
     link: 'https://htos-demo.sharath.uk/',
     thumbnail: HtOSImage,
     aspectRatio: 2128 / 2151,

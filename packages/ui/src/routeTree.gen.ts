@@ -20,6 +20,7 @@ import { Route as SShortIdImport } from './routes/s.$shortId'
 
 const YoutubeSummarizerLazyImport = createFileRoute('/youtube-summarizer')()
 const ShortenerLazyImport = createFileRoute('/shortener')()
+const SelfHostedLazyImport = createFileRoute('/self-hosted')()
 const PrevSitesLazyImport = createFileRoute('/prev-sites')()
 const AboutWriterLazyImport = createFileRoute('/about-writer')()
 const AboutGamerLazyImport = createFileRoute('/about-gamer')()
@@ -40,6 +41,11 @@ const ShortenerLazyRoute = ShortenerLazyImport.update({
   path: '/shortener',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/shortener.lazy').then((d) => d.Route))
+
+const SelfHostedLazyRoute = SelfHostedLazyImport.update({
+  path: '/self-hosted',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/self-hosted.lazy').then((d) => d.Route))
 
 const PrevSitesLazyRoute = PrevSitesLazyImport.update({
   path: '/prev-sites',
@@ -136,6 +142,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrevSitesLazyImport
       parentRoute: typeof rootRoute
     }
+    '/self-hosted': {
+      id: '/self-hosted'
+      path: '/self-hosted'
+      fullPath: '/self-hosted'
+      preLoaderRoute: typeof SelfHostedLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/shortener': {
       id: '/shortener'
       path: '/shortener'
@@ -170,6 +183,7 @@ export const routeTree = rootRoute.addChildren({
   AboutGamerLazyRoute,
   AboutWriterLazyRoute,
   PrevSitesLazyRoute,
+  SelfHostedLazyRoute,
   ShortenerLazyRoute,
   YoutubeSummarizerLazyRoute,
   SShortIdRoute,

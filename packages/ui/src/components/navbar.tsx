@@ -4,6 +4,7 @@ import {
   HomeIcon,
   LogInIcon,
   LogOutIcon,
+  MoreHorizontalIcon,
   PenToolIcon,
   RotateCcwIcon,
   ShoppingCartIcon,
@@ -106,6 +107,12 @@ const ToolsMenu = () => {
           <Link to="/shortener">
             <ShoppingCartIcon size={20} />
             &nbsp;&nbsp;URL shortener
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild className="cursor-pointer">
+          <Link to="/self-hosted">
+            <MoreHorizontalIcon size={20} />
+            &nbsp;&nbsp;Self hosted
           </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
