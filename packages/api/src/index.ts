@@ -1,4 +1,4 @@
-import { zValidator } from '@hono/zod-validator';
+import { vValidator } from '@hono/valibot-validator';
 import { type HonoEnv, validateEnv } from 'api/env';
 import { auth } from 'api/middleware/auth';
 import { initialize } from 'api/middleware/initialize';
@@ -19,12 +19,12 @@ const hono = new Hono<HonoEnv>()
   .options((c) => c.text('OK'))
   .use(validateEnv)
   .use(initialize)
-  .get('/shortener', zValidator('query', ShortenerExpandQuerySchema), ShortenerExpand)
+  .get('/shortener', vValidator('query', ShortenerExpandQuerySchema), ShortenerExpand)
   .use(auth)
   .get('/aipoem', AIPoem)
   .get('/poemthumbnail', PoemThumbnail)
-  .get('/youtube-summarizer', zValidator('query', YoutubeSummarizerQuerySchema), YoutubeSummarizer)
-  .post('/shortener', zValidator('query', ShortenerCreateQuerySchema), ShortenerCreate);
+  .get('/youtube-summarizer', vValidator('query', YoutubeSummarizerQuerySchema), YoutubeSummarizer)
+  .post('/shortener', vValidator('query', ShortenerCreateQuerySchema), ShortenerCreate);
 
 export type HonoType = typeof hono;
 

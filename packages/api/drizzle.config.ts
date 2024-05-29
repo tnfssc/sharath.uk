@@ -1,10 +1,11 @@
 import { envSchema } from 'api/env';
 import * as dotenv from 'dotenv';
 import type { Config } from 'drizzle-kit';
+import * as v from 'valibot';
 
 dotenv.config({ path: '.dev.vars' });
 
-const env = envSchema.parse(process.env);
+const env = v.parse(envSchema, process.env);
 
 export default {
   schema: './drizzle/schema.ts',

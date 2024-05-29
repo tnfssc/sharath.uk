@@ -6,9 +6,11 @@ import { stream } from 'hono/streaming';
 import { loadSummarizationChain } from 'langchain/chains';
 import { YoutubeLoader } from 'langchain/document_loaders/web/youtube';
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
-import { z } from 'zod';
+import * as v from 'valibot';
 
-export const YoutubeSummarizerQuerySchema = z.object({ url: z.string().url().includes('https://').includes('youtu') });
+export const YoutubeSummarizerQuerySchema = v.object({
+  url: v.pipe(v.string(), v.url(), v.includes('https://'), v.includes('youtu')),
+});
 
 export const YoutubeSummarizer: Handler<HonoEnv> = (c) => {
   c.header('Content-Encoding', 'none');
@@ -16,7 +18,7 @@ export const YoutubeSummarizer: Handler<HonoEnv> = (c) => {
   return stream(c, async (stream) => {
     const { readable, writable } = new TransformStream<Uint8Array, Uint8Array>();
 
-    const { url } = YoutubeSummarizerQuerySchema.parse({ url: c.req.query('url') });
+    const { url } = v.parse(YoutubeSummarizerQuerySchema, { url: c.req.query('url') });
     const loader = YoutubeLoader.createFromUrl(url);
     const docs = await loader.loadAndSplit(new RecursiveCharacterTextSplitter());
 

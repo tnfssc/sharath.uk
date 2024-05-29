@@ -1,23 +1,23 @@
 import type { Env } from 'api/env';
+import * as v from 'valibot';
 import { verifyIdToken as googleVerifyIdToken } from 'web-auth-library/google';
-import { z } from 'zod';
 
-const firebaseAdminConfigSchema = z.object({
-  type: z.literal('service_account'),
-  project_id: z.string(),
-  private_key_id: z.string(),
-  private_key: z.string(),
-  client_email: z.string().email(),
-  client_id: z.string(),
-  auth_uri: z.string().url(),
-  token_uri: z.string().url(),
-  auth_provider_x509_cert_url: z.string().url(),
-  client_x509_cert_url: z.string().url(),
-  universe_domain: z.string(),
+const firebaseAdminConfigSchema = v.object({
+  type: v.literal('service_account'),
+  project_id: v.string(),
+  private_key_id: v.string(),
+  private_key: v.string(),
+  client_email: v.pipe(v.string(), v.email()),
+  client_id: v.string(),
+  auth_uri: v.pipe(v.string(), v.url()),
+  token_uri: v.pipe(v.string(), v.url()),
+  auth_provider_x509_cert_url: v.pipe(v.string(), v.url()),
+  client_x509_cert_url: v.pipe(v.string(), v.url()),
+  universe_domain: v.string(),
 });
 
 export const getFirebaseAdminConfig = (env: Env) =>
-  firebaseAdminConfigSchema.parse(JSON.parse(env.FIREBASE_SERVICE_ACCOUNT_KEY));
+  v.parse(firebaseAdminConfigSchema, JSON.parse(env.FIREBASE_SERVICE_ACCOUNT_KEY));
 
 export const verifyIdToken = async (env: Env, idToken: string) => {
   const firebaseAdminConfig = getFirebaseAdminConfig(env);

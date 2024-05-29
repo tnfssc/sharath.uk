@@ -6,8 +6,6 @@
   "scripts": {
     "build": "bun --bun x tsc && bun --bun x vite build",
     "check-types": "bun --bun x tsc",
-    "cosmos": "cosmos",
-    "cosmos-export": "cosmos-export",
     "coverage": "vitest run --coverage",
     "dev": "bun --bun x vite",
     "format": "prettier --write .",
@@ -63,8 +61,6 @@
     "prettier-plugin-packagejson": "^2.4.12",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "react": "^18.3.1",
-    "react-cosmos": "^6.1.1",
-    "react-cosmos-plugin-vite": "^6.1.1",
     "react-day-picker": "^8.10.0",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.51.4",
@@ -73,12 +69,10 @@
     "typescript": "^5.4.5",
     "unocss": "^0.59.4",
     "unocss-preset-animations": "^1.0.2",
-    "unocss-preset-shadcn": "^0.2.3",
-    "valibot": "^0.30.0",
+    "valibot": "^0.31.0-rc.6",
     "vite": "^5.2.10",
     "vite-imagetools": "^7.0.1",
     "vitest": "^1.5.2",
-    "zod": "^3.23.8",
     "zustand": "^4.5.2"
   }
 }

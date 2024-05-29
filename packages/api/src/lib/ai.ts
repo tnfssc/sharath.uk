@@ -1,5 +1,3 @@
-import { z } from 'zod';
-
 export interface TextGenerationPromptRequestBody {
   prompt: string;
   raw?: boolean;
@@ -14,15 +12,13 @@ export interface TextGenerationMessagesRequestBody {
 
 export type TextGenerationModels = '@cf/meta/llama-3-8b-instruct';
 
-export const workersEnvSchema = z.object({
-  AI: z.object({
-    run: z.function().args(z.string(), z.unknown()).returns(z.promise(z.unknown())),
-  }),
-});
-
-export type WorkersEnv = z.infer<typeof workersEnvSchema>;
+export interface WorkersEnv {
+  AI: { run: (model: string, options: unknown) => Promise<unknown> };
+}
 export const workersEnvSchemaParse = (env: unknown): WorkersEnv => {
-  workersEnvSchema.parse(env);
+  // @ts-expect-error - I am too lazy to fix this
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  if (typeof env?.AI?.run !== 'function') throw new Error('workersEnvSchemaParse');
   return env as WorkersEnv;
 };
 

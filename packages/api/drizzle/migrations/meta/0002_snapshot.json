@@ -40,9 +40,7 @@
       "indexes": {
         "urls_id_unique": {
           "name": "urls_id_unique",
-          "columns": [
-            "id"
-          ],
+          "columns": ["id"],
           "isUnique": true
         }
       },
@@ -86,9 +84,7 @@
       "indexes": {
         "visits_id_unique": {
           "name": "visits_id_unique",
-          "columns": [
-            "id"
-          ],
+          "columns": ["id"],
           "isUnique": true
         }
       },
@@ -97,12 +93,8 @@
           "name": "visits_linkId_urls_id_fk",
           "tableFrom": "visits",
           "tableTo": "urls",
-          "columnsFrom": [
-            "linkId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["linkId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }

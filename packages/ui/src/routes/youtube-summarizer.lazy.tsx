@@ -19,7 +19,7 @@ export const Route = createLazyFileRoute('/youtube-summarizer')({
 });
 
 const formSchema = v.object({
-  url: v.string([v.url(), v.includes('https://'), v.includes('youtu')]),
+  url: v.pipe(v.string(), v.url(), v.includes('https://'), v.includes('youtu')),
 });
 
 function YoutubeSummarizer() {
@@ -27,12 +27,12 @@ function YoutubeSummarizer() {
 
   const [summary, setSummary] = useState('');
   const isLoading = useBool(false);
-  const form = useForm<v.Output<typeof formSchema>>({
+  const form = useForm<v.InferOutput<typeof formSchema>>({
     defaultValues: { url: '' },
     resolver: valibotResolver(formSchema),
   });
 
-  const onSubmit = async ({ url }: v.Output<typeof formSchema>) => {
+  const onSubmit = async ({ url }: v.InferOutput<typeof formSchema>) => {
     setSummary('');
     isLoading.set.true();
     const endpoint = new URL(hono['youtube-summarizer'].$url());

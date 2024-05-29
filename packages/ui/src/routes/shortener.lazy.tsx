@@ -22,7 +22,7 @@ export const Route = createLazyFileRoute('/shortener')({
 });
 
 const formSchema = v.object({
-  url: v.string([v.url()]),
+  url: v.pipe(v.string(), v.url()),
 });
 
 function Shortener() {
@@ -30,7 +30,7 @@ function Shortener() {
   const copy = useCopy();
 
   const [shortUrl, setShortUrl] = useState('');
-  const form = useForm<v.Output<typeof formSchema>>({
+  const form = useForm<v.InferOutput<typeof formSchema>>({
     defaultValues: { url: '' },
     resolver: valibotResolver(formSchema),
   });
@@ -45,7 +45,7 @@ function Shortener() {
     },
   });
 
-  const onSubmit = async ({ url }: v.Output<typeof formSchema>) => {
+  const onSubmit = async ({ url }: v.InferOutput<typeof formSchema>) => {
     setShortUrl('');
     const id = await shortenMutation.mutateAsync(url);
     const shortUrl = `${env.VITE_PUBLIC_BASE_URL}/s/${id}`;

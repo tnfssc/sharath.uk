@@ -1,19 +1,19 @@
 import type { MiddlewareHandler } from 'hono';
+import * as v from 'valibot';
 import type { UserToken } from 'web-auth-library/google';
-import { z } from 'zod';
 
-export const envSchema = z.object({
-  FIREBASE_SERVICE_ACCOUNT_KEY: z.string(),
-  CLOUDFLARE_ACCOUNT_ID: z.string(),
-  CLOUDFLARE_API_TOKEN: z.string(),
+export const envSchema = v.object({
+  FIREBASE_SERVICE_ACCOUNT_KEY: v.string(),
+  CLOUDFLARE_ACCOUNT_ID: v.string(),
+  CLOUDFLARE_API_TOKEN: v.string(),
 
-  TURSO_DATABASE_URL: z.string().url(),
-  TURSO_AUTH_TOKEN: z.string(),
+  TURSO_DATABASE_URL: v.pipe(v.string(), v.url()),
+  TURSO_AUTH_TOKEN: v.string(),
 
-  AI: z.any(),
+  AI: v.any(),
 });
 
-export type Env = z.infer<typeof envSchema>;
+export type Env = v.InferOutput<typeof envSchema>;
 export interface HonoEnv {
   Bindings: Env;
   Variables: {
@@ -22,6 +22,6 @@ export interface HonoEnv {
 }
 
 export const validateEnv: MiddlewareHandler = (c, next) => {
-  envSchema.parse(c.env);
+  v.parse(envSchema, c.env);
   return next();
 };
