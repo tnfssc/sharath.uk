@@ -1,9 +1,11 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AnimatePresence } from 'framer-motion';
+import { posthog } from 'posthog-js';
 import { toast } from 'sonner';
 
 import { ThemeProvider } from '@/components/theme-provider';
 import { TooltipProvider } from '@/components/ui/tooltip';
+import { env } from '@/env';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,6 +27,8 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+if (env.PROD) posthog.init(env.VITE_POSTHOG_TOKEN, { api_host: env.VITE_POSTHOG_API_HOST });
 
 export default function Providers({ children }: React.PropsWithChildren) {
   return (
