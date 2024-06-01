@@ -1,6 +1,7 @@
 import { Outlet, createRootRoute } from '@tanstack/react-router';
+import { posthog } from 'posthog-js';
 
-import { TanStackRouterDevtools } from '@/components/__DEV__/TanStackRouterDevtools';
+import { TanStackRouterDevtools } from '@/components/dev/TanStackRouterDevtools';
 import NavBar from '@/components/navbar';
 import { BackgroundGradientAnimation } from '@/components/ui/background-gradient-animation';
 import { Meteors } from '@/components/ui/meteors';
@@ -9,6 +10,9 @@ import { useSettings } from '@/hooks/useSettings';
 
 export const Route = createRootRoute({
   component: __Root,
+  onEnter() {
+    posthog.capture('$pageview');
+  },
 });
 
 function __Root() {
