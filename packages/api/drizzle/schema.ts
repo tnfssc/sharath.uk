@@ -1,4 +1,4 @@
-import { createId as cuid2, init } from '@paralleldrive/cuid2';
+import { init } from '@paralleldrive/cuid2';
 import { sql } from 'drizzle-orm';
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
@@ -14,18 +14,4 @@ export const linkShortenerTable = sqliteTable('urls', {
   createdAt: integer('createdAt', { mode: 'timestamp_ms' })
     .notNull()
     .default(sql`(unixepoch() * 1000)`),
-});
-
-export const linkShortenerVisitsTable = sqliteTable('visits', {
-  id: text('id')
-    .unique()
-    .primaryKey()
-    .$defaultFn(() => cuid2()),
-  linkId: text('linkId')
-    .notNull()
-    .references(() => linkShortenerTable.id),
-  createdAt: integer('createdAt', { mode: 'timestamp_ms' })
-    .notNull()
-    .default(sql`(unixepoch() * 1000)`),
-  meta: text('meta', { mode: 'json' }).$type<CfProperties>(),
 });
