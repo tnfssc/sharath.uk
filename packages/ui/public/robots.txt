@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /settings/
+Disallow: /login/
+
+# Allow access to everything else
+Allow: /
+
+# Provide sitemap URL
+# Sitemap: https://www.sharath.uk/sitemap.xml

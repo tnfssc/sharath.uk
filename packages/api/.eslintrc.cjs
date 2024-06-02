@@ -7,6 +7,7 @@ module.exports = {
     'plugin:@typescript-eslint/stylistic-type-checked',
     'plugin:import-x/recommended',
     'plugin:import-x/typescript',
+    'plugin:deprecation/recommended',
     'eslint-config-prettier',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs', '.wrangler'],

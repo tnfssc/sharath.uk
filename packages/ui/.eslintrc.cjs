@@ -11,6 +11,7 @@ module.exports = {
     'plugin:import-x/recommended',
     'plugin:import-x/typescript',
     'plugin:jsx-a11y/recommended',
+    'plugin:deprecation/recommended',
     '@unocss',
     'eslint-config-prettier',
   ],

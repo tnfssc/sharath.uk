@@ -1,3 +1,4 @@
+import { SiYoutube } from '@icons-pack/react-simple-icons';
 import { Link, type LinkProps } from '@tanstack/react-router';
 import {
   CircleEllipsisIcon,
@@ -9,7 +10,6 @@ import {
   RotateCcwIcon,
   ShoppingCartIcon,
   User2Icon,
-  YoutubeIcon,
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -38,7 +38,9 @@ const NavMenuItem = ({
             variant="ghost"
             className={cn('transition-transform hover:scale-120 hover:bg-transparent', {})}
           >
-            <Link to={linkTo}>{children}</Link>
+            <Link to={linkTo} aria-label="linkTo">
+              {children}
+            </Link>
           </Button>
         </TooltipTrigger>
         <TooltipContent>{tooltip}</TooltipContent>
@@ -54,6 +56,7 @@ const SignInItem = () => {
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
+            aria-label={user ? 'Logout' : 'Login'}
             variant="ghost"
             className={cn('transition-transform hover:scale-120 hover:bg-transparent', {})}
             disabled={user === undefined}
@@ -82,11 +85,12 @@ const ToolsMenu = () => {
           <Tooltip>
             <TooltipTrigger>
               <Button
+                aria-label="Tools"
                 asChild
                 variant="ghost"
                 className={cn('transition-transform hover:scale-120 hover:bg-transparent text-foreground', {})}
               >
-                <Link>
+                <Link aria-label="Tools">
                   <PenToolIcon size={20} />
                 </Link>
               </Button>
@@ -99,7 +103,7 @@ const ToolsMenu = () => {
       <DropdownMenuContent className="z-1000 w-56">
         <DropdownMenuItem asChild className="cursor-pointer">
           <Link to="/youtube-summarizer">
-            <YoutubeIcon size={20} />
+            <SiYoutube size={20} />
             &nbsp;&nbsp;Youtube summarizer
           </Link>
         </DropdownMenuItem>

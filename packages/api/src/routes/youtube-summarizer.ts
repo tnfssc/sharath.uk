@@ -1,10 +1,10 @@
+import { YoutubeLoader } from '@langchain/community/document_loaders/web/youtube';
 import type { HonoEnv } from 'api/env';
 import LangChain from 'api/lib/langchain';
 import { getStreamer } from 'api/misc/langchain-utils';
 import type { Handler } from 'hono';
 import { stream } from 'hono/streaming';
 import { loadSummarizationChain } from 'langchain/chains';
-import { YoutubeLoader } from 'langchain/document_loaders/web/youtube';
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import * as v from 'valibot';
 
@@ -20,7 +20,8 @@ export const YoutubeSummarizer: Handler<HonoEnv> = (c) => {
 
     const { url } = v.parse(YoutubeSummarizerQuerySchema, { url: c.req.query('url') });
     const loader = YoutubeLoader.createFromUrl(url);
-    const docs = await loader.loadAndSplit(new RecursiveCharacterTextSplitter());
+    const splitter = new RecursiveCharacterTextSplitter();
+    const docs = splitter.splitDocuments(await loader.load());
 
     const encoder = new TextEncoder();
     const writer = writable.getWriter();
