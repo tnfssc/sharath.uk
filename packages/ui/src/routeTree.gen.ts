@@ -17,6 +17,7 @@ const YoutubeSummarizerLazyImport = createFileRoute('/youtube-summarizer')();
 const ShortenerLazyImport = createFileRoute('/shortener')();
 const SelfHostedLazyImport = createFileRoute('/self-hosted')();
 const PrevSitesLazyImport = createFileRoute('/prev-sites')();
+const AskLazyImport = createFileRoute('/ask')();
 const AboutWriterLazyImport = createFileRoute('/about-writer')();
 const AboutGamerLazyImport = createFileRoute('/about-gamer')();
 const AboutDeveloperLazyImport = createFileRoute('/about-developer')();
@@ -44,6 +45,11 @@ const PrevSitesLazyRoute = PrevSitesLazyImport.update({
   path: '/prev-sites',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/prev-sites.lazy').then((d) => d.Route));
+
+const AskLazyRoute = AskLazyImport.update({
+  path: '/ask',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/ask.lazy').then((d) => d.Route));
 
 const AboutWriterLazyRoute = AboutWriterLazyImport.update({
   path: '/about-writer',
@@ -126,6 +132,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutWriterLazyImport;
       parentRoute: typeof rootRoute;
     };
+    '/ask': {
+      id: '/ask';
+      path: '/ask';
+      fullPath: '/ask';
+      preLoaderRoute: typeof AskLazyImport;
+      parentRoute: typeof rootRoute;
+    };
     '/prev-sites': {
       id: '/prev-sites';
       path: '/prev-sites';
@@ -173,6 +186,7 @@ export const routeTree = rootRoute.addChildren({
   AboutDeveloperLazyRoute,
   AboutGamerLazyRoute,
   AboutWriterLazyRoute,
+  AskLazyRoute,
   PrevSitesLazyRoute,
   SelfHostedLazyRoute,
   ShortenerLazyRoute,
@@ -194,6 +208,7 @@ export const routeTree = rootRoute.addChildren({
         "/about-developer",
         "/about-gamer",
         "/about-writer",
+        "/ask",
         "/prev-sites",
         "/self-hosted",
         "/shortener",
@@ -218,6 +233,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/about-writer": {
       "filePath": "about-writer.lazy.tsx"
+    },
+    "/ask": {
+      "filePath": "ask.lazy.tsx"
     },
     "/prev-sites": {
       "filePath": "prev-sites.lazy.tsx"
