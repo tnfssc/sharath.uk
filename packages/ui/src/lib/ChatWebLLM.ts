@@ -7,8 +7,8 @@ import {
   type AppConfig,
   type ChatOptions,
   type InitProgressCallback,
-  MLCEngine,
   type MLCEngineInterface,
+  WebWorkerMLCEngine,
   prebuiltAppConfig,
 } from '@mlc-ai/web-llm';
 import type { ChatCompletionMessageParam } from '@mlc-ai/web-llm/lib/openai_api_protocols';
@@ -71,7 +71,11 @@ export class ChatWebLLM extends SimpleChatModel {
     this.chatOptions = inputs.chatOptions;
     this.model = inputs.model;
     this.temperature = inputs.temperature;
-    this.engine = new MLCEngine();
+    this.engine = new WebWorkerMLCEngine(
+      new Worker(new URL('./webllm.ts', import.meta.url), {
+        type: 'module',
+      }),
+    );
   }
 
   _llmType() {

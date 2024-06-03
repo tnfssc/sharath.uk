@@ -1,6 +1,11 @@
-import { CreateMLCEngine, type InitProgressCallback } from '@mlc-ai/web-llm';
+import { MLCEngine, MLCEngineWorkerHandler } from '@mlc-ai/web-llm';
 
-const MODEL_ID = 'TinyLlama-1.1B-Chat-v0.4-q4f16_1-MLC-1k';
+const engine = new MLCEngine();
+let handler: MLCEngineWorkerHandler | undefined;
 
-export const createEngine = (onProgress: InitProgressCallback) =>
-  CreateMLCEngine(MODEL_ID, { initProgressCallback: onProgress });
+self.onmessage = (msg: MessageEvent) => {
+  if (!handler) {
+    handler = new MLCEngineWorkerHandler(engine);
+  }
+  handler.onmessage(msg);
+};

@@ -21,6 +21,7 @@ import {
 } from '@/components/ui/select';
 import { Typography } from '@/components/ui/typography';
 import { useBool } from '@/hooks/useBool';
+import { useSettings } from '@/hooks/useSettings';
 import { ChatWebLLM, modelIdSchema, modelList } from '@/lib/ChatWebLLM';
 import { useAuthStore } from '@/store/auth';
 
@@ -32,6 +33,7 @@ const initializeFormSchema = v.object({ modelId: modelIdSchema });
 const questionFormSchema = v.object({ question: v.string() });
 
 function Chat() {
+  const settings = useSettings();
   const { user } = useAuthStore();
 
   const isStreaming = useBool(false);
@@ -57,7 +59,7 @@ function Chat() {
 
   const [answer, setAnswer] = useState('');
   const initializeForm = useForm<v.InferOutput<typeof initializeFormSchema>>({
-    defaultValues: { modelId: '' },
+    defaultValues: { modelId: 'TinyLlama-1.1B-Chat-v0.4-q4f16_1-MLC' },
     resolver: valibotResolver(initializeFormSchema),
   });
   const questionForm = useForm<v.InferOutput<typeof questionFormSchema>>({
@@ -85,73 +87,81 @@ function Chat() {
   };
 
   const onSubmitInitializeForm = ({ modelId }: v.InferOutput<typeof initializeFormSchema>) => {
+    settings.setGradient(false);
+    settings.setMeteors(false);
     modelMutation.mutate(modelId);
   };
 
   return (
-    <PageWrapper className="pb-24">
+    <PageWrapper className="flex flex-col items-center pb-24">
       <Typography variant="h1" className="my-8 w-full text-center">
         Ask (beta)
       </Typography>
-      <Form {...initializeForm}>
-        <form
-          onSubmit={(e) => void initializeForm.handleSubmit(onSubmitInitializeForm)(e)}
-          className="max-w-lg w-full flex items-center gap-2"
-        >
-          <FormField
-            control={initializeForm.control}
-            name="modelId"
-            render={({ field: { name, onBlur, onChange, ref, value, disabled } }) => (
-              <FormItem className="flex-1">
-                <FormControl>
-                  <Select
-                    name={name}
-                    disabled={disabled}
-                    value={value}
-                    onValueChange={(value) => {
-                      onChange({ target: { value } });
-                    }}
-                  >
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Select a model" />
-                    </SelectTrigger>
-                    <SelectContent className="h-[180px]" onBlur={onBlur} ref={ref}>
-                      <SelectGroup>
-                        <SelectLabel>Models</SelectLabel>
-                        {modelList.map((m) => (
-                          <SelectItem key={m} value={m}>
-                            {m}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-              </FormItem>
-            )}
-          />
-          <Button disabled={!user || modelMutation.isPending}>Initialize</Button>
-        </form>
-      </Form>
-      <Form {...questionForm}>
-        <form
-          onSubmit={(e) => void questionForm.handleSubmit(onSubmitQuestionForm)(e)}
-          className="max-w-lg w-full flex items-center gap-2"
-        >
-          <FormField
-            control={questionForm.control}
-            name="question"
-            render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormControl>
-                  <Input placeholder="Why does water look blue?" {...field} />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-          <Button disabled={!user || !questionForm.formState.isValid || modelMutation.isPending}>Submit</Button>
-        </form>
-      </Form>
+      <div className="max-w-md">
+        <Form {...initializeForm}>
+          <form
+            onSubmit={(e) => void initializeForm.handleSubmit(onSubmitInitializeForm)(e)}
+            className="my-1 max-w-md w-full flex items-center gap-2"
+          >
+            <FormField
+              control={initializeForm.control}
+              name="modelId"
+              render={({ field: { name, onBlur, onChange, ref, value, disabled } }) => (
+                <FormItem className="flex-1">
+                  <FormControl>
+                    <Select
+                      name={name}
+                      disabled={disabled}
+                      value={value}
+                      onValueChange={(value) => {
+                        onChange({ target: { value } });
+                      }}
+                    >
+                      <SelectTrigger className="w-48">
+                        <SelectValue placeholder="Select a model" />
+                      </SelectTrigger>
+                      <SelectContent className="h-[180px]" onBlur={onBlur} ref={ref}>
+                        <SelectGroup>
+                          <SelectLabel>Models</SelectLabel>
+                          {modelList.map((m) => (
+                            <SelectItem key={m} value={m}>
+                              {m}
+                            </SelectItem>
+                          ))}
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <Button className="w-24" disabled={!user || modelMutation.isPending}>
+              Initialize
+            </Button>
+          </form>
+        </Form>
+        <Form {...questionForm}>
+          <form
+            onSubmit={(e) => void questionForm.handleSubmit(onSubmitQuestionForm)(e)}
+            className="my-1 max-w-md w-full flex items-center gap-2"
+          >
+            <FormField
+              control={questionForm.control}
+              name="question"
+              render={({ field }) => (
+                <FormItem className="flex-1">
+                  <FormControl>
+                    <Input placeholder="Why does water look blue?" {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <Button className="w-24" disabled={!user || !questionForm.formState.isValid || !modelMutation.isSuccess}>
+              ✨Ask&nbsp;&nbsp;&nbsp;
+            </Button>
+          </form>
+        </Form>
+      </div>
       <div className="max-w-4xl whitespace-pre-wrap p-4">
         {!user && 'You must be logged in to use this.'}
         {isStreaming.value && !answer && 'Loading...'}

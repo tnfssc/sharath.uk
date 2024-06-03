@@ -1,7 +1,7 @@
 import { atom, useAtom } from 'jotai';
 
-const meteorsAtom = atom(localStorage.getItem('meteors') !== 'false');
-const gradientAtom = atom(localStorage.getItem('gradient') !== 'false');
+const meteorsAtom = atom(true);
+const gradientAtom = atom(true);
 
 export const useSettings = () => {
   const [meteors, setMeteors] = useAtom(meteorsAtom);
@@ -10,12 +10,10 @@ export const useSettings = () => {
   return {
     meteors,
     setMeteors: (value: boolean) => {
-      localStorage.setItem('meteors', value.toString());
       setMeteors(value);
     },
     gradient,
     setGradient: (value: boolean) => {
-      localStorage.setItem('gradient', value.toString());
       setGradient(value);
     },
   };
