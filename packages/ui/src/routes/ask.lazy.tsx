@@ -30,8 +30,8 @@ export const Route = createLazyFileRoute('/ask')({
   component: Chat,
 });
 
-const initializeFormSchema = v.object({ modelId: v.string() });
-const questionFormSchema = v.object({ question: v.string() });
+const initializeFormSchema = v.object({ modelId: v.pipe(v.string(), v.nonEmpty()) });
+const questionFormSchema = v.object({ question: v.pipe(v.string(), v.nonEmpty()) });
 
 function Chat() {
   const settings = useSettings();
@@ -70,7 +70,7 @@ function Chat() {
 
   const [answer, setAnswer] = useState('');
   const initializeForm = useForm<v.InferOutput<typeof initializeFormSchema>>({
-    defaultValues: { modelId: 'TinyLlama-1.1B-Chat-v0.4-q4f16_1-MLC' },
+    defaultValues: { modelId: '' },
     resolver: valibotResolver(initializeFormSchema),
   });
   const questionForm = useForm<v.InferOutput<typeof questionFormSchema>>({
@@ -115,7 +115,7 @@ function Chat() {
   return (
     <PageWrapper className="flex flex-col items-center pb-24">
       <Typography variant="h1" className="my-8 w-full text-center">
-        Ask (beta)
+        Ask
       </Typography>
       <div className="max-w-md">
         <Form {...initializeForm}>
@@ -142,7 +142,7 @@ function Chat() {
                       </SelectTrigger>
                       <SelectContent className="h-[180px]" onBlur={onBlur} ref={ref}>
                         <SelectGroup>
-                          <SelectLabel>Models</SelectLabel>
+                          <SelectLabel>Smallest models are at the top</SelectLabel>
                           {modelListQuery.data?.map((m) => (
                             <SelectItem key={m} value={m}>
                               {m}
@@ -155,7 +155,7 @@ function Chat() {
                 </FormItem>
               )}
             />
-            <Button className="w-24" disabled={!user || modelMutation.isPending}>
+            <Button className="w-24" disabled={!user || !initializeForm.formState.isValid || modelMutation.isPending}>
               Initialize
             </Button>
           </form>

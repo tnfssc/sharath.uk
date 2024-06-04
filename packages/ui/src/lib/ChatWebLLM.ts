@@ -16,7 +16,9 @@ import type { ChatCompletionMessageParam } from '@mlc-ai/web-llm/lib/openai_api_
 export const isShaderF16Available = async () =>
   (await navigator.gpu.requestAdapter({ powerPreference: 'high-performance' }))?.features.has('shader-f16');
 
-export const modelList = prebuiltAppConfig.model_list.map((m) => m.model_id);
+export const modelList = prebuiltAppConfig.model_list
+  .sort((a, b) => (a.vram_required_MB ?? 0) - (b.vram_required_MB ?? 0))
+  .map((m) => m.model_id);
 
 export interface WebLLMInputs extends BaseChatModelParams {
   appConfig?: AppConfig;
