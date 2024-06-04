@@ -13,9 +13,8 @@ import {
 } from '@mlc-ai/web-llm';
 import type { ChatCompletionMessageParam } from '@mlc-ai/web-llm/lib/openai_api_protocols';
 
-export const isShaderF16Available = (
-  await navigator.gpu.requestAdapter({ powerPreference: 'high-performance' })
-)?.features.has('shader-f16');
+export const isShaderF16Available = async () =>
+  (await navigator.gpu.requestAdapter({ powerPreference: 'high-performance' }))?.features.has('shader-f16');
 
 export const modelList = prebuiltAppConfig.model_list.map((m) => m.model_id);
 

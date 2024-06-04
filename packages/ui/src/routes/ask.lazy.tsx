@@ -41,8 +41,9 @@ function Chat() {
   const modelListQuery = useQuery({
     queryKey: ['model-list'],
     queryFn: async () => {
-      const { modelList } = await import('@/lib/ChatWebLLM');
-      return modelList;
+      const { modelList, isShaderF16Available } = await import('@/lib/ChatWebLLM');
+      if (await isShaderF16Available()) return modelList;
+      return modelList.filter((m) => !m.includes('f16'));
     },
     enabled: !!user && isWebGPUAvailable,
   });
