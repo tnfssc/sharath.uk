@@ -45,6 +45,7 @@
     "@unocss/eslint-config": "^0.58.5",
     "@unocss/reset": "^0.58.5",
     "@vitejs/plugin-react-swc": "^3.6.0",
+    "@webgpu/types": "^0.1.42",
     "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",

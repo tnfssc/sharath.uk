@@ -22,7 +22,7 @@ import {
 import { Typography } from '@/components/ui/typography';
 import { useBool } from '@/hooks/useBool';
 import { useSettings } from '@/hooks/useSettings';
-import { ChatWebLLM, modelIdSchema, modelList } from '@/lib/ChatWebLLM';
+import { ChatWebLLM, isWebGPUAvailable, modelIdSchema, modelList } from '@/lib/ChatWebLLM';
 import { useAuthStore } from '@/store/auth';
 
 export const Route = createLazyFileRoute('/ask')({
@@ -91,6 +91,15 @@ function Chat() {
     settings.setMeteors(false);
     modelMutation.mutate(modelId);
   };
+
+  if (!isWebGPUAvailable)
+    return (
+      <PageWrapper className="flex flex-col items-center pb-24">
+        <Typography variant="h1" className="my-8 w-full text-center">
+          Your device does not support WebGPU
+        </Typography>
+      </PageWrapper>
+    );
 
   return (
     <PageWrapper className="flex flex-col items-center pb-24">
