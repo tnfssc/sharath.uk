@@ -1,5 +1,5 @@
 import { valibotResolver } from '@hookform/resolvers/valibot';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -22,14 +22,15 @@ import {
 import { Typography } from '@/components/ui/typography';
 import { useBool } from '@/hooks/useBool';
 import { useSettings } from '@/hooks/useSettings';
-import { ChatWebLLM, isWebGPUAvailable, modelIdSchema, modelList } from '@/lib/ChatWebLLM';
 import { useAuthStore } from '@/store/auth';
+
+const isWebGPUAvailable = !!navigator.gpu as boolean;
 
 export const Route = createLazyFileRoute('/ask')({
   component: Chat,
 });
 
-const initializeFormSchema = v.object({ modelId: modelIdSchema });
+const initializeFormSchema = v.object({ modelId: v.string() });
 const questionFormSchema = v.object({ question: v.string() });
 
 function Chat() {
@@ -37,10 +38,19 @@ function Chat() {
   const { user } = useAuthStore();
 
   const isStreaming = useBool(false);
+  const modelListQuery = useQuery({
+    queryKey: ['model-list'],
+    queryFn: async () => {
+      const { modelList } = await import('@/lib/ChatWebLLM');
+      return modelList;
+    },
+    enabled: !!user && isWebGPUAvailable,
+  });
   const modelMutation = useMutation({
     mutationKey: ['webllm-model'],
     mutationFn: async (_modelId: string) => {
-      const modelId = v.parse(modelIdSchema, _modelId);
+      const modelId = v.parse(v.string(), _modelId);
+      const { ChatWebLLM } = await import('@/lib/ChatWebLLM');
       const model = new ChatWebLLM({ model: modelId });
       const toastId = toast.loading('Initializing model');
       try {
@@ -120,19 +130,19 @@ function Chat() {
                   <FormControl>
                     <Select
                       name={name}
-                      disabled={disabled}
+                      disabled={modelListQuery.isPending || disabled}
                       value={value}
                       onValueChange={(value) => {
                         onChange({ target: { value } });
                       }}
                     >
                       <SelectTrigger className="w-48">
-                        <SelectValue placeholder="Select a model" />
+                        <SelectValue placeholder={modelListQuery.isPending ? 'Loading...' : 'Select a model'} />
                       </SelectTrigger>
                       <SelectContent className="h-[180px]" onBlur={onBlur} ref={ref}>
                         <SelectGroup>
                           <SelectLabel>Models</SelectLabel>
-                          {modelList.map((m) => (
+                          {modelListQuery.data?.map((m) => (
                             <SelectItem key={m} value={m}>
                               {m}
                             </SelectItem>
