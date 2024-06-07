@@ -1,4 +1,6 @@
+import { useQuery } from '@tanstack/react-query';
 import { createLazyFileRoute } from '@tanstack/react-router';
+import type { PostsOrPages } from '@tryghost/content-api';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useMemo, useRef } from 'react';
 
@@ -8,8 +10,8 @@ import { PageWrapper } from '@/components/page-wrapper';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Typography } from '@/components/ui/typography';
 import { useFocus } from '@/hooks/useFocus';
-import { useGhostAPI } from '@/hooks/useGhostAPI';
 import { useHover } from '@/hooks/useHover';
+import { hono } from '@/lib/hono';
 
 export const Route = createLazyFileRoute('/about-writer')({
   component: AboutWriter,
@@ -65,19 +67,23 @@ const GridItem = (item: Item) => {
 };
 
 function AboutWriter() {
-  const ghostData = useGhostAPI<Item[]>(async (g) => {
-    const posts = await g.posts.browse({ limit: 3, order: 'published_at DESC', include: 'authors' });
-    return posts.map((post) => ({
-      aspectRatio: 2128 / 1284,
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      description: post.excerpt!,
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      link: post.url!,
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      thumbnail: post.feature_image!,
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      title: post.title!,
-    }));
+  const latestPostsQuery = useQuery({
+    queryKey: ['latest-posts', 3],
+    queryFn: async () => {
+      const res = await hono.ghost['latest-posts'].$get({ query: { limit: 3 } });
+      const posts = (await res.json()) as PostsOrPages;
+      return posts.map((post) => ({
+        aspectRatio: 2128 / 1284,
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        description: post.excerpt!,
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        link: post.url!,
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        thumbnail: post.feature_image!,
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        title: post.title!,
+      }));
+    },
   });
   const items = useMemo<Item[]>(
     () => [
@@ -100,11 +106,11 @@ function AboutWriter() {
         {items.map((item) => (
           <GridItem key={item.title} {...item} />
         ))}
-        {ghostData === undefined &&
+        {latestPostsQuery.isPending &&
           Array.from({ length: 3 }).map(() => (
             <Skeleton key={Math.random()} className="h-64 max-w-128 min-w-64 w-full rounded-2" />
           ))}
-        {ghostData?.map((item) => <GridItem key={item.title} {...item} />)}
+        {latestPostsQuery.data?.map((item) => <GridItem key={item.title} {...item} />)}
       </div>
     </PageWrapper>
   );

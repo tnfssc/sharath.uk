@@ -15,3 +15,14 @@ export const linkShortenerTable = sqliteTable('urls', {
     .notNull()
     .default(sql`(unixepoch() * 1000)`),
 });
+
+export const cacheTable = sqliteTable('cache', {
+  key: text('key').unique().primaryKey(),
+  value: text('value', { mode: 'json' }).notNull(),
+  expiry: integer('expiry', { mode: 'timestamp_ms' })
+    .notNull()
+    .default(sql`((unixepoch() + 24 * 60 * 60) * 1000)`),
+  createdAt: integer('createdAt', { mode: 'timestamp_ms' })
+    .notNull()
+    .default(sql`(unixepoch() * 1000)`),
+});

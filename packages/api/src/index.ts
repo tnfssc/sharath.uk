@@ -12,7 +12,10 @@ import {
 } from 'api/routes/shortener';
 import { YoutubeSummarizer, YoutubeSummarizerQuerySchema } from 'api/routes/youtube-summarizer';
 import { Hono } from 'hono';
+import { cache } from 'hono/cache';
 import { cors } from 'hono/cors';
+
+import { GhostLatestPosts } from './routes/ghost';
 
 const hono = new Hono<HonoEnv>()
   .use(cors())
@@ -20,6 +23,8 @@ const hono = new Hono<HonoEnv>()
   .use(validateEnv)
   .use(initialize)
   .get('/shortener', vValidator('query', ShortenerExpandQuerySchema), ShortenerExpand)
+  .use('/ghost/latest-posts', cache({ cacheName: 'ghost-latest-posts', cacheControl: 'max-age=86400' }))
+  .get('/ghost/latest-posts', GhostLatestPosts)
   .use(auth)
   .get('/aipoem', AIPoem)
   .get('/poemthumbnail', PoemThumbnail)
