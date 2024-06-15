@@ -16,7 +16,7 @@ export const UploadCdn: Handler<HonoEnv> = async (c) => {
   const { ext } = v.parse(UploadCdnQuerySchema, { ext: c.req.query('ext') });
 
   const today = new Date();
-  const key = `/${today.getFullYear().toString()}` + `/${(today.getMonth() + 1).toString()}` + `/${createId()}.${ext}`;
+  const key = today.getFullYear().toString() + (today.getMonth() + 1).toString() + `-${createId()}.${ext}`;
 
   const res = await Cdn.put(c.env, key, c.req.raw.body);
 
