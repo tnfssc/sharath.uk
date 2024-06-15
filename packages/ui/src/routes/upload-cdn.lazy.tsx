@@ -1,3 +1,4 @@
+import type { FileUploadFileRejectDetails } from '@ark-ui/react';
 import { useMutation } from '@tanstack/react-query';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { CopyIcon } from 'lucide-react';
@@ -59,7 +60,8 @@ function UploadCdn() {
     [uploadCdnMutation],
   );
 
-  const onDropReject = useCallback(() => {
+  const onDropReject = useCallback(({ files }: FileUploadFileRejectDetails) => {
+    if (files.length === 0) return;
     toast.error('Cannot upload this file');
   }, []);
 
