@@ -8,9 +8,8 @@ export const auth: MiddlewareHandler<HonoEnv> = async (c, next) => {
   if (!idToken) throw new HTTPException(401);
 
   const decodedToken = await verifyIdToken(c.env, idToken).catch(() => null);
-  if (!decodedToken) throw new HTTPException(401);
-  if (decodedToken.email_verified === false) throw new HTTPException(401);
+  if (!decodedToken?.email || !decodedToken.email_verified) throw new HTTPException(401);
 
-  c.set('user', decodedToken);
+  c.set('user', { ...decodedToken, email: decodedToken.email });
   return next();
 };

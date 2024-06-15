@@ -17,6 +17,7 @@
     "@radix-ui/react-select": "^2.0.0"
   },
   "devDependencies": {
+    "@ark-ui/react": "^3.3.0",
     "@cloudflare/workers-types": "^4.20240423.0",
     "@hookform/resolvers": "^3.4.0",
     "@iconify/json": "^2.2.188",

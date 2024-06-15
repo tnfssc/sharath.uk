@@ -1,8 +1,9 @@
-import { GoogleAuthProvider, type User, signInWithPopup } from 'firebase/auth';
+import { type User as FirebaseUser, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { toast } from 'sonner';
 import { create } from 'zustand';
 
 import { auth } from '@/lib/firebase';
+import type { User } from '@/lib/types';
 
 export interface AuthStore {
   user: User | null | undefined;
@@ -10,14 +11,22 @@ export interface AuthStore {
   logout: () => void;
 }
 
+const validateUser = (user: FirebaseUser | null): AuthStore['user'] => {
+  if (!user?.email || !user.emailVerified) return null;
+  return user as User & { email: string };
+};
+
 export const useAuthStore = create<AuthStore>((set) => ({
-  user: undefined as User | null | undefined,
+  user: undefined as AuthStore['user'],
   login: () => {
     set({ user: undefined });
     signInWithPopup(auth, new GoogleAuthProvider())
       .then(({ user }) => {
-        set({ user });
-        toast.success(`Welcome, ${user.displayName ?? user.email ?? 'User'}`);
+        const validatedUser = validateUser(user);
+        set({ user: validatedUser });
+
+        if (validatedUser) toast.success(`Welcome, ${validatedUser.displayName ?? validatedUser.email}`);
+        else toast.error('Cannot log in with this account');
       })
       .catch(() => {
         set({ user: null });
@@ -39,5 +48,6 @@ export const useAuthStore = create<AuthStore>((set) => ({
 }));
 
 auth.onAuthStateChanged((user) => {
-  useAuthStore.setState({ user });
+  const validatedUser = validateUser(user);
+  useAuthStore.setState({ user: validatedUser });
 });

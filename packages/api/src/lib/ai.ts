@@ -1,3 +1,5 @@
+import { workersEnvSchemaParse } from './workers';
+
 export interface TextGenerationPromptRequestBody {
   prompt: string;
   raw?: boolean;
@@ -11,16 +13,6 @@ export interface TextGenerationMessagesRequestBody {
 }
 
 export type TextGenerationModels = '@cf/meta/llama-3-8b-instruct';
-
-export interface WorkersEnv {
-  AI: { run: (model: string, options: unknown) => Promise<unknown> };
-}
-export const workersEnvSchemaParse = (env: unknown): WorkersEnv => {
-  // @ts-expect-error - I am too lazy to fix this
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-  if (typeof env?.AI?.run !== 'function') throw new Error('workersEnvSchemaParse');
-  return env as WorkersEnv;
-};
 
 export const TextGeneration = {
   run: async <Streaming extends true>(

@@ -10,6 +10,8 @@ export const envSchema = v.object({
   TURSO_DATABASE_URL: v.pipe(v.string(), v.url()),
   TURSO_AUTH_TOKEN: v.string(),
 
+  CDN_BASE_URL: v.pipe(v.string(), v.url()),
+
   AI: v.any(),
 });
 
@@ -17,7 +19,7 @@ export type Env = v.InferOutput<typeof envSchema>;
 export interface HonoEnv {
   Bindings: Env;
   Variables: {
-    user: UserToken;
+    user: UserToken & { email: string };
   };
 }
 

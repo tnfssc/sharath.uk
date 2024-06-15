@@ -41,6 +41,8 @@ CLOUDFLARE_API_TOKEN=...
 
 TURSO_DATABASE_URL="libsql://....turso.io"
 TURSO_AUTH_TOKEN=...
+
+CDN_BASE_URL="https://cdn.sharath.uk/"
 ```
 
 - Create a file called `.env` at `./packages/ui/.env` with the following content:

@@ -5,11 +5,13 @@ import {
   HomeIcon,
   LogInIcon,
   LogOutIcon,
+  MenuIcon,
+  MessageCircleIcon,
   MessageSquareIcon,
   MoreHorizontalIcon,
-  PenToolIcon,
   RotateCcwIcon,
   ShoppingCartIcon,
+  UploadIcon,
   User2Icon,
 } from 'lucide-react';
 
@@ -22,6 +24,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from '@/components/ui/navigation-menu';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { isPrivateUser } from '@/lib/private';
 import { cn } from '@/lib/utils';
 import { useAuthStore } from '@/store/auth';
 
@@ -78,7 +81,7 @@ const SignInItem = () => {
   );
 };
 
-const ToolsMenu = () => {
+const MoreMenu = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -92,38 +95,52 @@ const ToolsMenu = () => {
                 className={cn('transition-transform hover:scale-120 hover:bg-transparent text-foreground', {})}
               >
                 <Link aria-label="Tools">
-                  <PenToolIcon size={20} />
+                  <MenuIcon size={20} />
                 </Link>
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Tools</TooltipContent>
+            <TooltipContent>More</TooltipContent>
           </Tooltip>
         </NavigationMenuItem>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className="z-1000 w-56">
         <DropdownMenuItem asChild className="cursor-pointer">
-          <Link to="/youtube-summarizer">
+          <Link to="/youtube-summarizer" className="flex items-center">
             <SiYoutube size={20} />
             &nbsp;&nbsp;Youtube summarizer
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild className="cursor-pointer">
-          <Link to="/shortener">
+          <Link to="/shortener" className="flex items-center">
             <ShoppingCartIcon size={20} />
             &nbsp;&nbsp;URL shortener
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild className="cursor-pointer">
-          <Link to="/ask">
+          <Link to="/ask" className="flex items-center">
             <MessageSquareIcon size={20} />
             &nbsp;&nbsp;Ask
           </Link>
         </DropdownMenuItem>
+        {isPrivateUser() && (
+          <DropdownMenuItem asChild className="cursor-pointer">
+            <Link to="/upload-cdn" className="flex items-center">
+              <UploadIcon size={20} />
+              &nbsp;&nbsp;Upload thing
+            </Link>
+          </DropdownMenuItem>
+        )}
         <DropdownMenuItem asChild className="cursor-pointer">
-          <Link to="/self-hosted">
+          <Link to="/self-hosted" className="flex items-center">
             <MoreHorizontalIcon size={20} />
             &nbsp;&nbsp;Self hosted
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild className="cursor-pointer">
+          <Link to="/prev-sites" className="flex items-center">
+            <RotateCcwIcon size={20} />
+            &nbsp;&nbsp;Previous sites
           </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
@@ -142,10 +159,19 @@ export default function NavBar() {
           <NavMenuItem tooltip="Profile" linkTo="/about">
             <User2Icon size={20} />
           </NavMenuItem>
-          <ToolsMenu />
-          <NavMenuItem tooltip="Previous versions" linkTo="/prev-sites">
-            <RotateCcwIcon size={20} />
-          </NavMenuItem>
+          <MoreMenu />
+          <NavigationMenuItem>
+            <Tooltip>
+              <TooltipTrigger>
+                <Button asChild variant="ghost" className="transition-transform hover:scale-120 hover:bg-transparent">
+                  <a href="https://blog.sharath.uk" aria-label="linkTo">
+                    <MessageCircleIcon size={20} />
+                  </a>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Blog</TooltipContent>
+            </Tooltip>
+          </NavigationMenuItem>
           <SignInItem />
         </NavigationMenuList>
       </NavigationMenu>
