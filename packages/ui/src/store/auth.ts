@@ -6,7 +6,7 @@ import { auth } from '@/lib/firebase';
 import type { User } from '@/lib/types';
 
 export interface AuthStore {
-  user: User | null | undefined;
+  user: maybe<User>;
   login: () => void;
   logout: () => void;
 }
@@ -17,14 +17,14 @@ const validateUser = (user: FirebaseUser | null): AuthStore['user'] => {
 };
 
 export const useAuthStore = create<AuthStore>((set) => ({
-  user: undefined as AuthStore['user'],
+  user: maybe,
   login: () => {
-    set({ user: undefined });
+    set({ user: maybe });
     signInWithPopup(auth, new GoogleAuthProvider())
       .then(({ user }) => {
         const validatedUser = validateUser(user);
+        if (isMaybe(validatedUser)) return;
         set({ user: validatedUser });
-
         if (validatedUser) toast.success(`Welcome, ${validatedUser.displayName ?? validatedUser.email}`);
         else toast.error('Cannot log in with this account');
       })
@@ -34,7 +34,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
       });
   },
   logout: () => {
-    set({ user: undefined });
+    set({ user: maybe });
     auth
       .signOut()
       .then(() => {
