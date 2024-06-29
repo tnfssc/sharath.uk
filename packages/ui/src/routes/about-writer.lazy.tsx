@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import { createLazyFileRoute } from '@tanstack/react-router';
-import type { PostsOrPages } from '@tryghost/content-api';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useMemo, useRef } from 'react';
 
@@ -11,7 +10,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Typography } from '@/components/ui/typography';
 import { useFocus } from '@/hooks/useFocus';
 import { useHover } from '@/hooks/useHover';
-import { hono } from '@/lib/hono';
 
 export const Route = createLazyFileRoute('/about-writer')({
   component: AboutWriter,
@@ -23,6 +21,21 @@ interface Item {
   thumbnail: string;
   aspectRatio: number;
   description: string;
+}
+
+interface Posts {
+  title: string;
+  description: string;
+  site: string;
+  items: {
+    title: string;
+    description: string;
+    date: string;
+    heroImage: string;
+    tags: string[];
+    pubDate: string;
+    link: string;
+  }[];
 }
 
 const GridItem = (item: Item) => {
@@ -67,24 +80,25 @@ const GridItem = (item: Item) => {
 };
 
 function AboutWriter() {
-  const latestPostsQuery = useQuery({
-    queryKey: ['latest-posts', 3],
+  const latestPostsQuery = useQuery<Item[]>({
+    queryKey: ['latest-posts'],
     queryFn: async () => {
-      const res = await hono.ghost['latest-posts'].$get({ query: { limit: 3 } });
-      const posts = (await res.json()) as PostsOrPages;
-      return posts.map((post) => ({
-        aspectRatio: 2128 / 1284,
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        description: post.excerpt!,
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        link: post.url!,
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        thumbnail: post.feature_image!,
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        title: post.title!,
-      }));
+      const res = await fetch('https://blog.sharath.uk/rss.json');
+      if (!res.ok) throw new Error(res.statusText);
+      const posts: Posts = await res.json();
+      return posts.items
+        .sort((a, b) => Date.parse(b.pubDate) - Date.parse(a.pubDate))
+        .slice(0, 3)
+        .map((post) => ({
+          aspectRatio: 2128 / 1284,
+          description: post.description,
+          link: post.link,
+          thumbnail: post.heroImage,
+          title: post.title,
+        }));
     },
   });
+
   const items = useMemo<Item[]>(
     () => [
       {
