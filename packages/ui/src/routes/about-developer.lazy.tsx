@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useRef } from 'react';
@@ -12,6 +13,8 @@ import { Image } from '@/components/image';
 import { PageWrapper } from '@/components/page-wrapper';
 import { Typography } from '@/components/ui/typography';
 import { useHover } from '@/hooks/useHover';
+import { hono } from '@/lib/hono';
+import { cn } from '@/lib/utils';
 
 export const Route = createLazyFileRoute('/about-developer')({
   component: AboutDeveloper,
@@ -31,7 +34,7 @@ const GridItem = (item: (typeof items)[0]) => {
             whileHover={{ backgroundColor: 'rgba(0,0,0,0.8)' }}
           >
             <AnimatePresence>
-              <Typography variant="h3" className="p-2 text-white">
+              <Typography variant="h3" className={cn('p-2 text-white')}>
                 {item.title}
               </Typography>
               {isHovered && (
@@ -43,7 +46,11 @@ const GridItem = (item: (typeof items)[0]) => {
                   className="p-4"
                 >
                   <Typography variant="p" className="w-full">
-                    {item.description}
+                    {/* Remove emojis */}
+                    {item.description.replace(
+                      /([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g,
+                      '',
+                    )}
                   </Typography>
                 </motion.div>
               )}
@@ -56,12 +63,43 @@ const GridItem = (item: (typeof items)[0]) => {
 };
 
 function AboutDeveloper() {
+  const contributions = useQuery({
+    queryKey: ['contributions'],
+    queryFn: async () => {
+      const res = await hono.contributions.$get();
+      if (!res.ok) throw new Error(res.statusText);
+      const data = await res.json();
+      return data.slice(0, 6).map((i) => ({
+        title: '',
+        link: i.url,
+        thumbnail: i.openGraphImageUrl,
+        aspectRatio: 2128 / 1287,
+        description: i.shortDescriptionHTML,
+      }));
+    },
+  });
+
   return (
     <PageWrapper className="pb-24">
       <Typography variant="h1" className="my-8 w-full text-center">
         Developer
       </Typography>
-      <div className="grid grid-cols-1 place-items-center gap-2 p-2 lg:grid-cols-3">{items.map(GridItem)}</div>
+      <div className="grid grid-cols-1 place-items-center gap-2 p-2 lg:grid-cols-3">
+        {items.map((p) => (
+          <GridItem key={p.link} {...p} />
+        ))}
+      </div>
+      <div className="h-16" />
+      {!contributions.isPending && (
+        <>
+          <Typography variant="h1" className="my-8 w-full text-center">
+            Contributions
+          </Typography>
+          <div className="grid grid-cols-1 place-items-center gap-2 p-2 lg:grid-cols-3">
+            {contributions.data?.map((p) => <GridItem key={p.link} {...p} />)}
+          </div>
+        </>
+      )}
     </PageWrapper>
   );
 }

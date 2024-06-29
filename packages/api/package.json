@@ -9,10 +9,10 @@
     "db:migrate": "bun x drizzle-kit migrate",
     "db:studio": "bun x drizzle-kit studio",
     "deploy": "bun x wrangler deploy",
-    "dev": "bun x wrangler dev --remote",
+    "dev": "bun x wrangler dev",
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --report-unused-disable-directives --max-warnings 0",
-    "start": "bun x wrangler dev"
+    "start": "bun x wrangler dev --remote"
   },
   "dependencies": {
     "@hono/valibot-validator": "^0.2.5",
@@ -41,6 +41,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-deprecation": "^3.0.0",
     "eslint-plugin-import-x": "^0.5.0",
+    "octokit": "^4.0.2",
     "prettier": "^3.2.5",
     "prettier-plugin-organize-imports": "^3.2.4",
     "prettier-plugin-packagejson": "^2.5.0",

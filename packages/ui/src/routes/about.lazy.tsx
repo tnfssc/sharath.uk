@@ -42,7 +42,7 @@ function About() {
               <ComputerIcon /> Developer
             </span>
           }
-          description="I love to code and create useful applications."
+          description="I love to create applications and contribute to open source projects."
           image={
             <div style={{ width: 270, height: 148 }} className="flex flex-col items-center justify-center">
               <div style={{ width: 108 }}>

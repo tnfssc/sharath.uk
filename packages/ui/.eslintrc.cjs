@@ -27,7 +27,7 @@ module.exports = {
     'import-x/no-unresolved': [
       'error',
       {
-        ignore: ['.svg', 'virtual:*', '@/*', 'routeTree.gen', 'sonner', 'hono/*'],
+        ignore: ['.svg', 'virtual:*', '@/*', 'routeTree.gen', 'sonner', 'hono/*', 'octokit'],
       },
     ],
     'react/prop-types': 'off',

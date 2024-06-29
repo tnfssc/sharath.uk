@@ -43,6 +43,11 @@ TURSO_DATABASE_URL="libsql://....turso.io"
 TURSO_AUTH_TOKEN=...
 
 CDN_BASE_URL="https://cdn.sharath.uk/"
+
+GITHUB_PAT=...
+
+GHOST_URL="https://ghost.sharath.uk"
+GHOST_KEY=...
 ```
 
 - Create a file called `.env` at `./packages/ui/.env` with the following content:

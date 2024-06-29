@@ -4,6 +4,7 @@ import { auth } from 'api/middleware/auth';
 import { closedAuth } from 'api/middleware/closed-auth';
 import { initialize } from 'api/middleware/initialize';
 import { AIPoem } from 'api/routes/aipoem';
+import { ContributionsPublic, ContributionsPublicQuerySchema } from 'api/routes/contributions';
 import { GhostLatestPosts } from 'api/routes/ghost';
 import { PoemThumbnail } from 'api/routes/poemthumbnail';
 import {
@@ -24,8 +25,17 @@ const hono = new Hono<HonoEnv>()
   .use(validateEnv)
   .use(initialize)
   .get('/shortener', vValidator('query', ShortenerExpandQuerySchema), ShortenerExpand)
-  .use('/ghost/latest-posts', cache({ cacheName: 'ghost-latest-posts', cacheControl: 'max-age=86400' }))
-  .get('/ghost/latest-posts', GhostLatestPosts)
+  .get(
+    '/ghost/latest-posts',
+    cache({ cacheName: 'ghost-latest-posts', cacheControl: 'max-age=86400' }),
+    GhostLatestPosts,
+  )
+  .get(
+    '/contributions',
+    cache({ cacheName: 'contributions-public', cacheControl: 'max-age=86400' }),
+    vValidator('query', ContributionsPublicQuerySchema),
+    ContributionsPublic,
+  )
   .use(auth)
   .get('/aipoem', AIPoem)
   .get('/poemthumbnail', PoemThumbnail)

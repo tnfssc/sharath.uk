@@ -2,7 +2,7 @@ import * as v from 'valibot';
 
 export const envSchema = v.object({
   VITE_API_ENDPOINT: v.optional(v.pipe(v.string(), v.url()), 'https://sharathuk-api.tnfssc.workers.dev'),
-  VITE_PUBLIC_BASE_URL: v.optional(v.pipe(v.string(), v.url()), "'https://www.sharath.uk'"),
+  VITE_PUBLIC_BASE_URL: v.optional(v.pipe(v.string(), v.url()), 'https://www.sharath.uk'),
   VITE_POSTHOG_TOKEN: v.optional(v.string(), 'phc_vDQlNcqbiH7rMqcKFJAlBiXPAmzY4wT53ln9VvmmnFM'),
   VITE_POSTHOG_API_HOST: v.optional(v.string(), 'https://us.i.posthog.com'),
   DEV: v.optional(v.boolean(), false),

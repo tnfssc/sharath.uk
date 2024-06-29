@@ -12,6 +12,11 @@ export const envSchema = v.object({
 
   CDN_BASE_URL: v.pipe(v.string(), v.url()),
 
+  GITHUB_PAT: v.string(),
+
+  GHOST_URL: v.pipe(v.string(), v.url()),
+  GHOST_KEY: v.string(),
+
   AI: v.any(),
 });
 
