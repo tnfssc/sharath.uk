@@ -22,6 +22,9 @@ export const ContributionsPublic: Handler<
     username: c.req.query('username') ?? 'tnfssc',
   });
 
-  const contributions = await cache(`contributions-public-${username}`)(() => getContributions(octokit, username));
+  const contributions = await cache(
+    `contributions-public-${username}`,
+    30 * 24 * 60 * 60 * 1000,
+  )(() => getContributions(octokit, username));
   return c.json(contributions);
 };
