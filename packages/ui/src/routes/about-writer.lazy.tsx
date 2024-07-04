@@ -92,7 +92,7 @@ function AboutWriter() {
         .map((post) => ({
           aspectRatio: 2128 / 1284,
           description: post.description,
-          link: post.link,
+          link: `${posts.site}${post.link.slice(1)}`,
           thumbnail: post.heroImage,
           title: post.title,
         }));
