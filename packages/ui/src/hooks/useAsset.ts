@@ -16,7 +16,7 @@ export const useAsset = (url: string) => {
           resolve();
           return;
         }
-        fetch(url, { referrerPolicy: 'strict-origin-when-cross-origin' })
+        fetch(url, { referrerPolicy: 'no-referrer' })
           .then((r) => r.blob())
           .then((blob) => {
             // read to base64
