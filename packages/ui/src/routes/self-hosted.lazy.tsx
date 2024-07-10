@@ -5,7 +5,6 @@ import { useRef } from 'react';
 import ChatImg from '@/assets/images/chat.png?w=960&image';
 import CodeImg from '@/assets/images/code.png?w=960&image';
 import DpasteImg from '@/assets/images/dpaste.png?w=960&image';
-import GhostImg from '@/assets/images/ghost.png?w=960&image';
 import MeetImg from '@/assets/images/meet.png?w=960&image';
 import MinioImg from '@/assets/images/minio.png?w=960&image';
 import NetDataImg from '@/assets/images/netdata.png?w=960&image';
@@ -75,17 +74,17 @@ function SelfHosted() {
 const items = [
   {
     title: 'LobeChat',
-    link: 'https://chat.sharath.uk/',
+    link: 'https://lobechat.sharath.uk/',
     thumbnail: ChatImg,
     aspectRatio: 960 / 540,
     description: 'LobeChat instance connected to Ollama',
   },
   {
-    title: 'VSCode',
-    link: 'https://code.sharath.uk/',
+    title: 'Coder',
+    link: 'https://coder.sharath.uk/',
     thumbnail: CodeImg,
     aspectRatio: 960 / 540,
-    description: 'A VSCode development environment opens in a browser',
+    description: 'Coder is a web IDE management platform',
   },
   {
     title: 'DPaste',
@@ -93,13 +92,6 @@ const items = [
     thumbnail: DpasteImg,
     aspectRatio: 960 / 540,
     description: 'A pastebin service hosted on my hardware',
-  },
-  {
-    title: 'Ghost',
-    link: 'https://ghost.sharath.uk/',
-    thumbnail: GhostImg,
-    aspectRatio: 960 / 540,
-    description: 'My blog. Powered by Ghost.',
   },
   {
     title: 'Jitsi',
