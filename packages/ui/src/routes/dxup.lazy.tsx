@@ -8,7 +8,7 @@ import dxupImg4 from '@/assets/images/dxup/4.png';
 import dxupImg5 from '@/assets/images/dxup/5.png';
 import { PageWrapper } from '@/components/page-wrapper';
 import { Button } from '@/components/ui/button';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import { Typography } from '@/components/ui/typography';
 
 export const Route = createLazyFileRoute('/dxup')({
@@ -48,8 +48,6 @@ function Dxup() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselNext />
-            <CarouselPrevious />
           </Carousel>
         </div>
       </div>
