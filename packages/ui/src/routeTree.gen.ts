@@ -23,6 +23,7 @@ const UploadCdnLazyImport = createFileRoute('/upload-cdn')()
 const ShortenerLazyImport = createFileRoute('/shortener')()
 const SelfHostedLazyImport = createFileRoute('/self-hosted')()
 const PrevSitesLazyImport = createFileRoute('/prev-sites')()
+const DxupLazyImport = createFileRoute('/dxup')()
 const AskLazyImport = createFileRoute('/ask')()
 const AboutWriterLazyImport = createFileRoute('/about-writer')()
 const AboutGamerLazyImport = createFileRoute('/about-gamer')()
@@ -58,6 +59,11 @@ const PrevSitesLazyRoute = PrevSitesLazyImport.update({
   path: '/prev-sites',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/prev-sites.lazy').then((d) => d.Route))
+
+const DxupLazyRoute = DxupLazyImport.update({
+  path: '/dxup',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/dxup.lazy').then((d) => d.Route))
 
 const AskLazyRoute = AskLazyImport.update({
   path: '/ask',
@@ -154,6 +160,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AskLazyImport
       parentRoute: typeof rootRoute
     }
+    '/dxup': {
+      id: '/dxup'
+      path: '/dxup'
+      fullPath: '/dxup'
+      preLoaderRoute: typeof DxupLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/prev-sites': {
       id: '/prev-sites'
       path: '/prev-sites'
@@ -209,6 +222,7 @@ export const routeTree = rootRoute.addChildren({
   AboutGamerLazyRoute,
   AboutWriterLazyRoute,
   AskLazyRoute,
+  DxupLazyRoute,
   PrevSitesLazyRoute,
   SelfHostedLazyRoute,
   ShortenerLazyRoute,
@@ -232,6 +246,7 @@ export const routeTree = rootRoute.addChildren({
         "/about-gamer",
         "/about-writer",
         "/ask",
+        "/dxup",
         "/prev-sites",
         "/self-hosted",
         "/shortener",
@@ -260,6 +275,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/ask": {
       "filePath": "ask.lazy.tsx"
+    },
+    "/dxup": {
+      "filePath": "dxup.lazy.tsx"
     },
     "/prev-sites": {
       "filePath": "prev-sites.lazy.tsx"

@@ -1,6 +1,7 @@
 import { SiYoutube } from '@icons-pack/react-simple-icons';
 import { Link, type LinkProps } from '@tanstack/react-router';
 import {
+  ChevronsUpIcon,
   CircleEllipsisIcon,
   HomeIcon,
   LogInIcon,
@@ -131,6 +132,13 @@ const MoreMenu = () => {
             </Link>
           </DropdownMenuItem>
         )}
+
+        <DropdownMenuItem asChild className="cursor-pointer">
+          <Link to="/dxup" className="flex items-center">
+            <ChevronsUpIcon size={20} />
+            &nbsp;&nbsp;dxup
+          </Link>
+        </DropdownMenuItem>
         <DropdownMenuItem asChild className="cursor-pointer">
           <Link to="/self-hosted" className="flex items-center">
             <MoreHorizontalIcon size={20} />

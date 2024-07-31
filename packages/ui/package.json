@@ -13,7 +13,9 @@
     "preview": "bun --bun x vite preview",
     "test": "vitest"
   },
-  "dependencies": {},
+  "dependencies": {
+    "embla-carousel-react": "^8.1.8"
+  },
   "devDependencies": {
     "@ark-ui/react": "^3.3.0",
     "@cloudflare/workers-types": "^4.20240423.0",
@@ -48,6 +50,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "date-fns": "^3.3.1",
+    "embla-carousel-autoplay": "^8.1.8",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-deprecation": "^3.0.0",

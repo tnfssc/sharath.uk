@@ -5,6 +5,7 @@ import { useRef } from 'react';
 import ChatImg from '@/assets/images/chat.png?w=960&image';
 import CodeImg from '@/assets/images/code.png?w=960&image';
 import DpasteImg from '@/assets/images/dpaste.png?w=960&image';
+import InvokeAIImg from '@/assets/images/invokeai.png?w=960&image';
 import MeetImg from '@/assets/images/meet.png?w=960&image';
 import MinioImg from '@/assets/images/minio.png?w=960&image';
 import NetDataImg from '@/assets/images/netdata.png?w=960&image';
@@ -78,6 +79,13 @@ const items = [
     thumbnail: ChatImg,
     aspectRatio: 960 / 540,
     description: 'LobeChat instance connected to Ollama',
+  },
+  {
+    title: 'InvokeAI',
+    link: 'https://invokeai.sharath.uk/',
+    thumbnail: InvokeAIImg,
+    aspectRatio: 960 / 540,
+    description: 'Self hosted instance of InvokeAI',
   },
   {
     title: 'Coder',
