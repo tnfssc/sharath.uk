@@ -15,8 +15,8 @@ export const Route = createLazyFileRoute('/dxup')({
   component: Dxup,
 });
 
-const downloadLinkLinux = 'https://miniofiles.sharath.uk/dxup/dxup-linux-amd64.deb';
-const downloadLinkMacos = 'https://miniofiles.sharath.uk/dxup/dxup-macos-aarch64.dmg';
+const downloadLinkLinux = 'https://github.com/tnfssc/dxup/releases/latest';
+const downloadLinkMacos = 'https://github.com/tnfssc/dxup/releases/latest';
 
 function Dxup() {
   return (
