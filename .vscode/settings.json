@@ -1,12 +1,5 @@
 {
-  "eslint.workingDirectories": [
-    "./packages/ui"
-  ],
+  "eslint.workingDirectories": ["./packages/ui"],
   "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": [
-    "hono",
-    "langchain",
-    "POSTHOG",
-    "vectorize"
-  ]
+  "cSpell.words": ["hono", "langchain", "POSTHOG", "vectorize"]
 }

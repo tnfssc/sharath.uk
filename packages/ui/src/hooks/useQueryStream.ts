@@ -37,6 +37,7 @@ export const useQueryStream = <
   const query = useQuery<string, TError, string, TQueryKey>(
     {
       ...options,
+      // eslint-disable-next-line @tanstack/query/exhaustive-deps
       queryKey: options.queryKey,
       queryFn: async (params) => {
         if (typeof options.queryFn !== 'function') throw new Error('queryFn must be a function');

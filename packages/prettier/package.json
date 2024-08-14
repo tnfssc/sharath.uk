@@ -1,0 +1,16 @@
+{
+  "name": "@sharath.uk/prettier",
+  "version": "0.1.0",
+  "private": true,
+  "description": "",
+  "keywords": [],
+  "author": "sharath.uk",
+  "main": ".prettierrc",
+  "dependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "prettier": "^3.2.5",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "prettier-plugin-packagejson": "^2.4.12",
+    "prettier-plugin-tailwindcss": "^0.5.11"
+  }
+}

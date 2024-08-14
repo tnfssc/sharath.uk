@@ -1,16 +1,12 @@
 {
-  "name": "sharath.uk",
-  "version": "5.0.0",
+  "name": "@sharath.uk/eslint",
+  "version": "0.1.0",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
-  "scripts": {
-    "dev": "pnpm --filter '@sharath.uk/*' dev",
-    "format": "prettier --write .",
-    "lint": "pnpm --filter '@sharath.uk/*' lint"
-  },
-  "devDependencies": {
+  "description": "",
+  "keywords": [],
+  "author": "sharath.uk",
+  "main": ".eslintrc",
+  "dependencies": {
     "@typescript-eslint/eslint-plugin": "^7.1.0",
     "@typescript-eslint/parser": "^7.1.0",
     "@unocss/eslint-config": "^0.58.5",
@@ -22,6 +18,5 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5"
-  },
-  "packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a"
+  }
 }

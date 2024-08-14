@@ -1,0 +1,39 @@
+{
+  "extends": [
+    "../eslint",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
+    "@unocss"
+  ],
+  "plugins": [
+    "react-refresh"
+  ],
+  "parserOptions": {
+    "project": [
+      "./tsconfig.json"
+    ],
+    "tsconfigRootDir": "."
+  },
+  "rules": {
+    "react-refresh/only-export-components": [
+      "warn",
+      {
+        "allowConstantExport": true
+      }
+    ],
+    "react/prop-types": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    "*.config.*"
+  ]
+}

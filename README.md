@@ -60,13 +60,13 @@ VITE_PUBLIC_BASE_URL='http://localhost:5173'
 - Login to `wrangler-cli` using the following command:
 
 ```sh
-bun x wrangler login
+pnpx wrangler login
 ```
 
 - You can start both dev servers using the following command:
 
 ```sh
-bun dev
+pnpm dev
 ```
 
 - Open `http://localhost:5173` in your browser to view the website.
