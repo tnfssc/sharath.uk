@@ -225,7 +225,7 @@ importers:
         specifier: ^1.31.1
         version: 1.35.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tanstack/router-cli':
-        specifier: ^1.30.0
+        specifier: ^1.31.1
         version: 1.47.0
       '@tanstack/router-devtools':
         specifier: ^1.31.1
