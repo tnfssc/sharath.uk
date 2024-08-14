@@ -115,7 +115,7 @@ function Chat() {
   return (
     <PageWrapper className="flex flex-col items-center pb-24">
       <Typography variant="h1" className="my-8 w-full text-center">
-        Ask
+        Ask <span className="text-sm font-normal">beta</span>
       </Typography>
       <div className="max-w-md">
         <Form {...initializeForm}>
