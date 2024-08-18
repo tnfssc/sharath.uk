@@ -5,9 +5,11 @@ import { useRef } from 'react';
 
 import Covid19TrackerImage from '@/assets/images/covid19tracker.jpeg?w=960&image';
 import DirectionsImage from '@/assets/images/directions.jpeg?w=960&image';
+import GAIImage from '@/assets/images/gai.jpg?w=960&image';
 import GitHubImage from '@/assets/images/github.jpeg?w=960&image';
 import HtOSImage from '@/assets/images/htos1.jpeg?w=960&image';
 import OCSImage from '@/assets/images/ocs.jpeg?w=960&image';
+import SelfHostedImage from '@/assets/images/self-hosted.png?w=960&image';
 import T3PImage from '@/assets/images/t3p.jpeg?w=960&image';
 import { Image } from '@/components/image';
 import { PageWrapper } from '@/components/page-wrapper';
@@ -144,10 +146,32 @@ const items = [
       'A fork of covid19india.org, with a network traffic over 3 terabytes a month, millions http requests, this was my most popular project. Using just $20 a month.',
   },
   {
+    title: 'dxup',
+    link: 'https://sharath.uk/dxup/',
+    thumbnail: 'https://cdn.sharath.uk/20248-ypoc8.png',
+    aspectRatio: 2128 / 1284,
+    description:
+      "With dxup, you can manage your tools and their versions. It's like nvm for for many tools. You can install, uninstall, list, switch versions, etc.",
+  },
+  {
+    title: 'gai',
+    link: 'https://github.com/tnfssc/gai',
+    thumbnail: GAIImage,
+    aspectRatio: 2128 / 1373,
+    description: '⚡ Blazingly fast AI command generator made with Go',
+  },
+  {
+    title: 'Self-hosted',
+    link: 'https://sharath.uk/self-hosted',
+    thumbnail: SelfHostedImage,
+    aspectRatio: 2128 / 1373,
+    description: 'Self-hosted services running on a VPS cluster.',
+  },
+  {
     title: 'And more...',
-    link: 'https://github.com/tnfssc?tab=repositories',
+    link: 'https://github.com/tnfssc/tnfssc/blob/main/RESUME.md',
     thumbnail: GitHubImage,
     aspectRatio: 2128 / 1373,
-    description: 'You can find more things that I made on my GitHub account.',
+    description: 'You can find more things that I made on my GitHub account and resume.',
   },
 ];
