@@ -5,10 +5,12 @@ import path from 'node:path';
 import UnoCSS from 'unocss/vite';
 import { defineConfig } from 'vite';
 import { imagetools } from 'vite-imagetools';
+import topLevelAwait from 'vite-plugin-top-level-await';
+import wasm from 'vite-plugin-wasm';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [imagetools(), UnoCSS(), react(), TanStackRouterVite()],
+  plugins: [imagetools(), UnoCSS(), react(), TanStackRouterVite(), wasm(), topLevelAwait()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
