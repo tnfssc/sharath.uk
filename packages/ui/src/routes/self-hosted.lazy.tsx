@@ -13,6 +13,7 @@ import OutlineImg from '@/assets/images/outline.png?w=960&image';
 import PortainerImg from '@/assets/images/portainer.png?w=960&image';
 import RustPadImg from '@/assets/images/rustpad.png?w=960&image';
 import RxresumeImg from '@/assets/images/rxresume.png?w=960&image';
+import StirlingPdf from '@/assets/images/stirling-pdf.png?w=960&image';
 import UptimeKumaImg from '@/assets/images/uptimekuma.png?w=960&image';
 import { Image } from '@/components/image';
 import { PageWrapper } from '@/components/page-wrapper';
@@ -73,6 +74,13 @@ function SelfHosted() {
 }
 
 const items = [
+  {
+    title: 'Stirling PDF',
+    link: 'https://pdf.sharath.uk/',
+    thumbnail: StirlingPdf,
+    aspectRatio: 960 / 540,
+    description: 'Your hosted one-stop-shop for all your PDF needs.',
+  },
   {
     title: 'LobeChat',
     link: 'https://lobechat.sharath.uk/',
