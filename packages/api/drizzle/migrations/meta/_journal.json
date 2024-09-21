@@ -36,6 +36,13 @@
       "when": 1717779524655,
       "tag": "0004_rich_vanisher",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1726953013119,
+      "tag": "0005_fair_famine",
+      "breakpoints": true
     }
   ]
 }

@@ -14,6 +14,7 @@ import {
   ShortenerExpandQuerySchema,
 } from 'api/routes/shortener';
 import { UploadCdn, UploadCdnQuerySchema } from 'api/routes/upload-cdn';
+import { AllViewCounts, ViewCountSpy, ViewCountValue } from 'api/routes/view-counter';
 import { YoutubeSummarizer, YoutubeSummarizerQuerySchema } from 'api/routes/youtube-summarizer';
 import { Hono } from 'hono';
 import { cache } from 'hono/cache';
@@ -36,13 +37,16 @@ const hono = new Hono<HonoEnv>()
     vValidator('query', ContributionsPublicQuerySchema),
     ContributionsPublic,
   )
+  .get('/view-count/value', ViewCountValue)
+  .get('/view-count/increment', ViewCountSpy)
   .use(auth)
   .get('/aipoem', AIPoem)
   .get('/poemthumbnail', PoemThumbnail)
   .get('/youtube-summarizer', vValidator('query', YoutubeSummarizerQuerySchema), YoutubeSummarizer)
   .post('/shortener', vValidator('query', ShortenerCreateQuerySchema), ShortenerCreate)
   .use(closedAuth)
-  .put('/cdn', vValidator('query', UploadCdnQuerySchema), UploadCdn);
+  .put('/cdn', vValidator('query', UploadCdnQuerySchema), UploadCdn)
+  .get('/view-count/all', AllViewCounts);
 
 export type HonoType = typeof hono;
 

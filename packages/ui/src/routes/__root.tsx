@@ -7,6 +7,7 @@ import { BackgroundGradientAnimation } from '@/components/ui/background-gradient
 import { Meteors } from '@/components/ui/meteors';
 import { Toaster } from '@/components/ui/sonner';
 import { useSettings } from '@/hooks/useSettings';
+import { hono } from '@/lib/hono';
 
 export const Route = createRootRoute({
   component: __Root,
@@ -17,6 +18,10 @@ export const Route = createRootRoute({
 
 function __Root() {
   const { meteors } = useSettings();
+
+  const spyUrl = hono['view-count'].increment.$url();
+  spyUrl.searchParams.set('name', 'sharath.uk');
+
   return (
     <div className="w-screen flex flex-col items-center">
       <div className="relative w-full flex flex-col items-center">
@@ -35,6 +40,7 @@ function __Root() {
         </div>
         <Toaster position="top-right" />
         <TanStackRouterDevtools />
+        <img alt="view-count-spy" src={spyUrl.toString()} className="hidden" />
       </div>
     </div>
   );

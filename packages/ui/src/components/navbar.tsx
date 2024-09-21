@@ -4,6 +4,7 @@ import {
   ChevronsUpIcon,
   CircleDollarSignIcon,
   CircleEllipsisIcon,
+  EyeIcon,
   HomeIcon,
   LogInIcon,
   LogOutIcon,
@@ -133,7 +134,14 @@ const MoreMenu = () => {
             </Link>
           </DropdownMenuItem>
         )}
-
+        {isPrivateUser() && (
+          <DropdownMenuItem asChild className="cursor-pointer">
+            <Link to="/view-count" className="flex items-center">
+              <EyeIcon size={20} />
+              &nbsp;&nbsp;View Count
+            </Link>
+          </DropdownMenuItem>
+        )}
         <DropdownMenuItem asChild className="cursor-pointer">
           <Link to="/dxup" className="flex items-center">
             <ChevronsUpIcon size={20} />

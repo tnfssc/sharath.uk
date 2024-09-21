@@ -26,3 +26,8 @@ export const cacheTable = sqliteTable('cache', {
     .notNull()
     .default(sql`(unixepoch() * 1000)`),
 });
+
+export const viewCountTable = sqliteTable('viewCount', {
+  name: text('name').unique().primaryKey(),
+  count: integer('count').notNull(),
+});
