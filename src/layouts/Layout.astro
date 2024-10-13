@@ -1,0 +1,33 @@
+---
+import { Toaster } from "@/components/ui/sonner";
+import { ClientRouter } from "astro:transitions";
+import { Navigation } from "@/components/navigation";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="sharath.uk" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body>
+    <slot />
+    <Navigation client:only="react" transition:persist="navigation" />
+    <Toaster client:idle transition:persist="toaster" />
+  </body>
+</html>
+
+<script is:inline data-astro-rerun>
+  if (localStorage.getItem("theme") === "dark") document.documentElement.classList.add("dark");
+  else document.documentElement.classList.remove("dark");
+</script>
