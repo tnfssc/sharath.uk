@@ -1,14 +1,28 @@
 ---
 import "@/styles/globals.css";
+import { cn } from "@/lib/utils";
 import Layout from "@/layouts/Layout.astro";
+import { SparklesText } from "@/components/ui/sparkles-text";
+import { AnimatedGridPattern } from "@/components/ui/animated-grid-background";
 ---
 
-<Layout title="Welcome to Astro.">
-  <Fragment>
-    <h1>Welcome to <span>Astro</span></h1>
-    <p>
-      To get started, open the directory <code>src/pages</code> in your project.<br />
-      <strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-    </p>
-  </Fragment>
+<Layout title="sharath.uk">
+  <div
+    class="relative flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg border bg-background p-20 md:shadow-xl"
+  >
+    <div class="z-10 whitespace-pre-wrap text-center">
+      <SparklesText client:load text="sharath.uk" sparklesCount={5} />
+      <span class="font-bold">Coming soon</span>
+    </div>
+    <AnimatedGridPattern
+      client:load
+      duration={3}
+      numSquares={30}
+      maxOpacity={0.5}
+      className={cn(
+        "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)]",
+        "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12",
+      )}
+    />
+  </div>
 </Layout>

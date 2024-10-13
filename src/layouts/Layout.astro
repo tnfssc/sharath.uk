@@ -20,7 +20,11 @@ const { title } = Astro.props;
     <title>{title}</title>
     <ClientRouter />
   </head>
-  <body>
+  <body class="flex min-h-screen flex-col items-center justify-center bg-dot-black/20 dark:bg-dot-white/20">
+    <div
+      class="pointer-events-none absolute inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
+    >
+    </div>
     <slot />
     <Navigation client:only="react" transition:persist="navigation" />
     <Toaster client:only="react" transition:persist="toaster" />
