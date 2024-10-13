@@ -23,7 +23,7 @@ const { title } = Astro.props;
   <body>
     <slot />
     <Navigation client:only="react" transition:persist="navigation" />
-    <Toaster client:idle transition:persist="toaster" />
+    <Toaster client:only="react" transition:persist="toaster" />
   </body>
 </html>
 

@@ -1,28 +1,16 @@
-import { useMemo, useState, useEffect, useCallback } from "react";
+import { $theme } from "@/lib/store/theme";
+import { useMemo, useEffect } from "react";
+import { useStore } from "@nanostores/react";
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function useTheme() {
-  const [theme, setTheme] = useState<"dark" | "light">(() =>
-    localStorage.getItem("theme") !== "dark" ? "light" : "dark",
-  );
+const toggle = (v?: "dark" | "light") => {
+  const newValue = v ?? ($theme.get() === "dark" ? "light" : "dark");
+  localStorage.setItem("theme", newValue);
+  $theme.set(newValue);
+  document.documentElement.classList.toggle("dark", newValue === "dark");
+};
 
-  useEffect(() => {
-    const htmlElement = document.documentElement;
-    if (theme === "dark") htmlElement.classList.add("dark");
-    else htmlElement.classList.remove("dark");
-  }, [theme]);
-
-  const toggle = useCallback((v?: "dark" | "light") => {
-    setTheme((prev) => {
-      const newValue = v ?? (prev === "dark" ? "light" : "dark");
-      localStorage.setItem("theme", newValue);
-      return newValue;
-    });
-  }, []);
-
-  const hookValue = useMemo(() => {
-    return { toggle, value: theme };
-  }, [theme, toggle]);
-
-  return hookValue;
+export function useTheme(): { toggle: typeof toggle; value: typeof $theme.value } {
+  const theme = useStore($theme);
+  useEffect(() => $theme.set(localStorage.getItem("theme") !== "dark" ? "light" : "dark"), []);
+  return useMemo(() => ({ toggle, value: theme }), [theme]);
 }
