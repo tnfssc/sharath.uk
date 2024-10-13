@@ -32,6 +32,9 @@ dependencies:
   "@nanostores/react":
     specifier: ^0.8.0
     version: 0.8.0(nanostores@0.11.3)(react@18.3.1)
+  "@paralleldrive/cuid2":
+    specifier: ^2.2.2
+    version: 2.2.2
   "@radix-ui/react-dropdown-menu":
     specifier: ^2.1.2
     version: 2.1.2(@types/react-dom@18.3.1)(@types/react@18.3.11)(react-dom@18.3.1)(react@18.3.1)
@@ -3524,6 +3527,12 @@ packages:
       eslint-scope: 5.1.1
     dev: false
 
+  /@noble/hashes@1.5.0:
+    resolution:
+      { integrity: sha512-1j6kQFb7QRru7eKN3ZDvRcP13rugwdxZqCjbiAVZfIJwgj2A65UmT4TgARXGlXgnRkORLTDTrO19ZErt7+QXgA== }
+    engines: { node: ^14.21.3 || >=16 }
+    dev: false
+
   /@nodelib/fs.scandir@2.1.5:
     resolution:
       { integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g== }
@@ -3551,6 +3560,13 @@ packages:
   /@oslojs/encoding@1.1.0:
     resolution:
       { integrity: sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ== }
+    dev: false
+
+  /@paralleldrive/cuid2@2.2.2:
+    resolution:
+      { integrity: sha512-ZOBkgDwEdoYVlSeRbYYXs0S9MejQofiVYoTbKzy/6GQa39/q5tQU2IX46+shYnUkpEl3wc+J6wRlar7r2EK2xA== }
+    dependencies:
+      "@noble/hashes": 1.5.0
     dev: false
 
   /@pkgjs/parseargs@0.11.0:

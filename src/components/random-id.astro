@@ -1,0 +1,8 @@
+---
+import { createId } from "@paralleldrive/cuid2";
+
+await new Promise((resolve) => setTimeout(resolve, 1000));
+const id = createId();
+---
+
+<div class="animate-in fade-in">{id}</div>

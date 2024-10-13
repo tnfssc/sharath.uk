@@ -2,6 +2,7 @@
 import "@/styles/globals.css";
 import { cn } from "@/lib/utils";
 import Layout from "@/layouts/Layout.astro";
+import RandomId from "@/components/random-id.astro";
 import { SparklesText } from "@/components/ui/sparkles-text";
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-background";
 ---
@@ -10,9 +11,14 @@ import { AnimatedGridPattern } from "@/components/ui/animated-grid-background";
   <div
     class="relative flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg border bg-background p-20 md:shadow-xl"
   >
-    <div class="z-10 whitespace-pre-wrap text-center">
+    <div class="z-10 flex flex-col items-center text-center">
       <SparklesText client:load text="sharath.uk" sparklesCount={5} />
-      <span class="font-bold">Coming soon</span>
+      <span class="font-bold text-muted-foreground">Coming soon</span>
+      <span class="mt-2 text-sm text-muted-foreground">
+        <RandomId server:defer>
+          <div slot="fallback">loading</div>
+        </RandomId>
+      </span>
     </div>
     <AnimatedGridPattern
       client:load
