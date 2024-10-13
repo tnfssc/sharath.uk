@@ -11,6 +11,6 @@ const toggle = (v?: "dark" | "light") => {
 
 export function useTheme(): { toggle: typeof toggle; value: typeof $theme.value } {
   const theme = useStore($theme);
-  useEffect(() => $theme.set(localStorage.getItem("theme") !== "dark" ? "light" : "dark"), []);
+  useEffect(() => $theme.set(localStorage.getItem("theme") !== "light" ? "dark" : "light"), []);
   return useMemo(() => ({ toggle, value: theme }), [theme]);
 }
