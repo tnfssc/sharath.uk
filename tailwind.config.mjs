@@ -43,7 +43,12 @@ const addSvgBackgrounds = ({ matchUtilities, theme }) => {
 export default {
   darkMode: ["class"],
   // eslint-disable-next-line @typescript-eslint/no-require-imports, no-undef
-  plugins: [addVariablesForColors, addSvgBackgrounds, require("tailwindcss-animate")],
+  plugins: [
+    addVariablesForColors,
+    addSvgBackgrounds,
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+  ],
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {

@@ -1,0 +1,23 @@
+---
+import { cn } from "@/lib/utils";
+import { Image } from "astro:assets";
+
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  className?: string;
+  loading?: "lazy" | "eager";
+}
+
+const props = Astro.props;
+---
+
+<Image
+  width={800}
+  height={500}
+  referrerpolicy="no-referrer"
+  class={cn("w-full rounded-xl", props.className)}
+  {...props}
+/>

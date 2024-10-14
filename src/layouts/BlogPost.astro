@@ -1,0 +1,77 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+import { Image } from "astro:assets";
+import FormattedDate from "@/components/formatted-date.astro";
+import MaterialSymbolsLockIcon from "~icons/material-symbols/lock";
+
+import Base from "./Base.astro";
+
+type Props = CollectionEntry<"blog">["data"];
+const { date, tags, title, heroImage, description, public: isPublic } = Astro.props;
+---
+
+<Base title={title} image={heroImage} description={description}>
+  <main>
+    <article
+      class:list={[
+        "prose dark:prose-invert mx-auto",
+        "prose-a:no-underline hover:prose-a:underline",
+        "prose-img:rounded-xl",
+        "prose-pre:mt-0 prose-pre:rounded-t-none",
+        "prose-code:whitespace-pre prose-code:rounded prose-code:border-[#24292e] prose-code:bg-[#24292e] prose-code:p-0.5 prose-code:text-white prose-code:before:hidden prose-code:after:hidden",
+        "hide-last-empty-line-in-code-block hide-quote-marks-inside-blockquote remove-first-line-space-infront-of-code-block defaults-for-unplugin-icons",
+      ]}
+    >
+      <div class="flex justify-end gap-4">
+        {isPublic && <FormattedDate date={date} />}
+        {
+          !isPublic && (
+            <span class="text-muted-foreground">
+              <MaterialSymbolsLockIcon color="yellow" class="inline size-4" />
+              Draft
+            </span>
+          )
+        }
+      </div>
+      <div class="flex justify-center">
+        {
+          heroImage && (
+            <Image
+              width={800}
+              alt={title}
+              height={500}
+              loading="eager"
+              src={heroImage}
+              referrerpolicy="no-referrer"
+              class="mt-2 w-full rounded-xl"
+              transition:name={`${title}-image`}
+            />
+          )
+        }
+      </div>
+      <div>
+        <div>
+          <h1 class="mb-1" transition:name={`${title}-title`}>{title}</h1>
+          <p class="text-sm text-muted-foreground" transition:name={`${title}-description`}>
+            {description}
+          </p>
+          <div class="flex flex-wrap gap-2" transition:name={`${title}-tags`}>
+            {
+              tags.map((t, i) => (
+                <span
+                  transition:name={`${title}-${t}-${i.toString()}-tag`}
+                  class="mr-1 rounded-full border p-2 text-sm text-muted-foreground"
+                >
+                  {t}
+                </span>
+              ))
+            }
+          </div>
+          <hr class="my-4" />
+        </div>
+        <slot />
+      </div>
+    </article>
+  </main>
+</Base>

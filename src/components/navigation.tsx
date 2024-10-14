@@ -23,7 +23,7 @@ export function Navigation(): React.JSX.Element {
   const theme = useTheme();
 
   return (
-    <div className="absolute bottom-4 mx-auto w-full">
+    <div className="absolute bottom-4 z-10 mx-auto w-full">
       <TooltipProvider>
         <Dock distance={60} direction="middle">
           {navigationItems.map((item) => (

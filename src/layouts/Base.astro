@@ -1,0 +1,66 @@
+---
+import "@/styles/globals.css";
+import { Toaster } from "@/components/ui/sonner";
+import { ClientRouter } from "astro:transitions";
+import { Navigation } from "@/components/navigation";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { SITE_TITLE, SITE_DESCRIPTION } from "astro:env/client";
+
+interface Props {
+  title?: string;
+  image?: string;
+  description?: string;
+}
+
+const { title = SITE_TITLE, image = "/icon-invert.png", description = SITE_DESCRIPTION } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <ClientRouter />
+
+    <!-- Global Metadata -->
+    <meta charset="utf-8" />
+    <meta content="#000000" name="theme-color" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta content="website" property="og:type" />
+    <meta property="og:url" content={Astro.url} />
+    <meta content={title} property="og:title" />
+    <meta content={description} property="og:description" />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta content={Astro.url} property="twitter:url" />
+    <meta content={title} property="twitter:title" />
+    <meta content={description} property="twitter:description" />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+  </head>
+  <body>
+    <ScrollArea client:load className="flex h-screen w-full flex-col items-center justify-center overflow-auto">
+      <slot />
+      <Navigation client:only="react" transition:persist="navigation" />
+      <Toaster client:only="react" transition:persist="toaster" />
+    </ScrollArea>
+  </body>
+</html>
+
+<script is:inline data-astro-rerun>
+  if (localStorage.getItem("theme") !== "light") document.documentElement.classList.add("dark");
+  else document.documentElement.classList.remove("dark");
+</script>

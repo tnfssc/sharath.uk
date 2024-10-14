@@ -6,7 +6,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
-  },
-  "include": ["*.mjs", ".*.mjs", "src/**/*"]
+    },
+    "checkJs": true,
+    "types": ["./src/jsx.d.ts", "unplugin-icons/types/astro"]
+  }
 }

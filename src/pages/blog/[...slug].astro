@@ -1,0 +1,21 @@
+---
+import BlogPost from "@/layouts/BlogPost.astro";
+import { render, getCollection, type CollectionEntry } from "astro:content";
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    props: post,
+    params: { slug: post.id },
+  }));
+}
+type Props = CollectionEntry<"blog">;
+
+const post = Astro.props;
+const { Content } = await render(post);
+---
+
+<BlogPost {...post.data}>
+  <Content />
+</BlogPost>
