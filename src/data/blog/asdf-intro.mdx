@@ -7,8 +7,6 @@ tags: ["asdf", "nvm", "nodejs", "volta", "toolchain", "version", "manager"]
 public: true
 ---
 
-export * from "@/components/mdx";
-import { Code } from "astro:components";
 import CodeHead from "@/components/code-head.astro";
 
 For all the lazy readers 🤓 out there, [click here](#how-to-use) to skip ahead to the important bit on how to use the thing. I highly recommend NOT skipping for first time readers.
@@ -130,7 +128,7 @@ Just reopen the terminal application
 
 import MaterialSymbolsPowerPlug from "~icons/material-symbols/power-plug";
 
-### <MaterialSymbolsPowerPlug className="h-6 w-6 inline" /> Plugins
+### <MaterialSymbolsPowerPlug class="h-6 w-6 inline" /> Plugins
 
 You can't do much with just asdf installed. You need plugins to install any toolchain.
 
@@ -191,7 +189,7 @@ We are done with installation, but if you type in `node -v` in your terminal, yo
 
 import PhGearFill from "~icons/ph/gear-fill";
 
-### <PhGearFill className="h-6 w-6 inline" /> Configuration
+### <PhGearFill class="h-6 w-6 inline" /> Configuration
 
 Just like how `nvm` expects a `.nvmrc` file in the root of your project, `asdf` expects a `.tool-versions` in the root of your project.
 
@@ -223,7 +221,7 @@ You can create a similar file in your project's root with the versions you want.
 
 import MdiRecycle from "~icons/mdi/recycle";
 
-### <MdiRecycle className="h-6 w-6 inline" /> Uninstallation
+### <MdiRecycle class="h-6 w-6 inline" /> Uninstallation
 
 You already know how to use `asdf`.
 
@@ -266,7 +264,7 @@ Don't forget that you can create `.tool-versions` file in any project root. `asd
 
 import LetsIconsLightningAltFill from "~icons/lets-icons/lightning-alt-fill";
 
-### <LetsIconsLightningAltFill className="h-6 w-6 inline" /> Troubleshooting
+### <LetsIconsLightningAltFill class="h-6 w-6 inline" /> Troubleshooting
 
 One of the most common problems you encounter is that `command not found` error when you try to use something like `yarn`, `npx` or `corepack`. This could also occur when you install something like `pm2` using `npm install --global pm2` or `yarn global add pm2`. To resolve this, simply run
 
@@ -280,7 +278,7 @@ This should fix all `command not found` errors.
 
 import MaterialSymbolsDeleteRounded from "~icons/material-symbols/delete-rounded";
 
-### <MaterialSymbolsDeleteRounded className="h-6 w-6 inline" /> Uninstallation
+### <MaterialSymbolsDeleteRounded class="h-6 w-6 inline" /> Uninstallation
 
 Remove the `asdf` lines from your `~/.config/fish/config.fish`, `.bashrc` or `.zshrc` file.
 
