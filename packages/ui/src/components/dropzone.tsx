@@ -14,7 +14,7 @@ export const Dropzone = (props: FileUploadRootProps & { onFileDrop?: (files: Fil
         'image/gif': ['.gif'],
         'video/mp4': ['.mp4'],
       }}
-      maxFileSize={1024 * 1024 * 10}
+      maxFileSize={1024 * 1024 * 100}
       minFileSize={50}
       onFileAccept={(f) => {
         props.onFileDrop?.(f.files);
