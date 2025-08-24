@@ -16,8 +16,8 @@ function Index() {
         <h1 className="bg-opacity-50 from-foreground to-foreground/[0.8] bg-gradient-to-r bg-clip-text text-center text-4xl text-transparent font-bold md:text-7xl">
           sharath.uk
         </h1>
-        <a className="mt-6 hover:underline" href="https://sca.run" target="_blank" rel="noreferrer">
-          checkout my blog at sca.run
+        <a className="mt-6 hover:underline" href="https://sharath.boi.gg" target="_blank" rel="noreferrer">
+          the site is moving to sharath.boi.gg
         </a>
         <p className="mx-auto mb-8 mt-4 max-w-lg text-center text-base font-normal">
           <a className="p-2 hover:underline" href="https://github.com/tnfssc" target="_blank" rel="noreferrer">
